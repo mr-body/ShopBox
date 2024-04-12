@@ -1,0 +1,920 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+
+
+body{
+    overflow: hidden;
+    background: #f6f6f9;
+}
+
+.header{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    background-color: rgb(40, 40, 40);
+}
+
+
+.header h1{
+    font-size: 25px;
+    font-weight: 650;
+}
+
+.section{
+    display: flex;
+    max-width: 100%;
+}
+
+.prodotos{
+    width: 100%;
+    border-right: 1px solid #efefef;
+    height: 94vh;
+    overflow-y: scroll;
+}
+
+.prodotos::-webkit-scrollbar{
+    background-color: #efefef;
+    width: 4px;
+}
+.prodotos::-webkit-scrollbar-thumb{
+    background-color: rgb(124, 124, 120);
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+
+.lista{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.lista a{
+    text-decoration: none;
+    color: black;
+}
+.caixa{    
+    position:relative;
+    padding: 16px;
+    background-color: #ddd8d8d5;
+    margin: 20px;
+    border-radius: 12px;
+    max-width: 180px;
+    height: 150px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    font-size: 70%;
+    cursor: pointer;
+    transition: 0.5s;
+    contain:content;
+}
+
+.moreinfo{
+    position: absolute;
+    opacity: 0%;
+}
+
+.moreinfo .dados{
+    transition: 0.5s;
+    transform: translateY(500px);
+}
+
+.caixa:hover  .moreinfo{
+    transition: 0.3s;
+    opacity: 100%;
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.781);
+}
+
+.moreinfo:hover .dados{
+    color: white;
+    padding: 10px;
+    transform: translateY(1px);
+    border-radius: 4px;
+}
+.moreinfo .dados h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 9pt;
+    color: white;
+    text-transform: uppercase;
+}
+
+.moreinfo:hover .dados h2{
+    background-color: green;
+    border-radius: 5px 10px;
+    padding: 5px;
+    font-size: 14pt;
+    color: white;
+    text-transform: uppercase;
+}
+.caixa h4{
+    width: 100%;
+    position:absolute;
+    bottom:-5px;
+    color:#fff;
+    height: 25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-transform:lowercasecase;
+    background:#363949;
+    
+}
+.caixa h1,h2,h4{
+    margin: 4px;
+}
+.caixa h1{
+    margin-top: 0px;
+    color: rgb(34,34,34);
+    font-size: 14pt;
+}
+.caixa h2{
+    margin-top: 0px;
+    color: rgb(34 34 34 / 60%);
+    font-size: 12pt;
+}
+
+.caixa span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    width: 50px;
+    height: 25px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    color: #fff;
+    font-weight: 650;
+    background: #363949;
+    cursor: pointer;
+    /* background: #7d8da1 */
+}
+
+.caixa img.perfil{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border:3px solid rgb(40,40,40,.3);
+}
+
+.caixa:hover{
+    transform: scale(1.1);
+    background: #ddd;
+    border-radius: 10px;
+}
+
+.cv{
+    border: none;
+    color:white;
+    background-color: green;
+    padding: 10px;
+    cursor: pointer;
+    padding-right: 60px;
+    padding-left: 60px;
+    font-size: 11pt;
+    font-weight: bold;
+    border-radius: 6px;
+    width: 250px;
+    margin-bottom: 5px;
+    transition: 0.5s;
+}
+.cv.feicho{
+    background: #da3019;
+}
+
+.cv:hover{
+    opacity: 0.75;
+}
+
+
+
+
+.topinfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #efefef;
+    border-right: 3px solid #efefef;
+    padding: 15px;
+}
+.camposearch{
+    display: flex;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+.camposearch input{
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 12pt;
+}
+.topinfo h1{
+    color: #ddd;
+    font-size: 16pt;
+}
+
+
+.perfil{
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    border: 3px solid #efefef;
+}
+
+
+.workarea{
+    margin: 10px;
+}
+
+.campotexto{
+    height:25px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #efefef;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.campotexto input[type="text"],input[type="number"]{
+    background-color: #efefef;
+    border: none;
+    margin-left: 10px;
+    outline: none;
+    font-size: 12pt;
+}
+input[type="submit"]{
+    background-color: green;
+    border: none;
+    color:white;
+    padding: 10px;
+    text-align: center;
+    width:300px;
+    cursor: pointer;
+}
+.meanwork label{
+    margin-bottom: 10px;
+    font-size: 10pt;
+    font-weight: 650;
+    color: #938f8f;
+}
+
+.meanwork{
+    display: flex;
+    align-items: center;
+}
+
+.meainperfil{
+    margin-left: 30px;
+}
+.campotexto i{
+    color:#ddd
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+}
+#perfilmin{
+    width: 30px;
+    height: 30px;
+    border-radius:6px;
+}
+#imagemDePerfil{
+    width: 250px;
+    height: 200px;
+    border-radius: 7px;
+    object-fit:cover;
+}
+table{
+    width: 100%;
+    color: #444;
+    position: relative;
+    border-collapse: collapse;
+}
+table th{
+    font-size:13px;
+    color:rgb(50 50 50 / 72%);
+}
+table tbody tr {
+    height: 40px;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    background:#cccccc3d;
+    transition:0.5s;
+}
+table tbody tr:nth-child(even){
+    background:rgb(206, 206, 207);
+}
+table tbody tr:hover {
+    background:#adb5bd;
+}
+table tbody tr td{
+    font-size: 11pt;
+    color: #555;
+    font-weight: 650;
+}
+#delete{
+    text-decoration: none; 
+    padding: 4px;
+    color:red
+}
+strong{
+    position: absolute ;
+    top: 0;
+    margin-left: 21%;
+}
+
+
+.menuoption select{
+    padding: 10px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    outline: none;
+}
+
+.menuoption select option{
+    color: black;
+    font-size: 12pt;
+}
+.container{
+    display: flex;
+}
+
+.container nav{
+    background-color: rgb(60, 60, 60);
+    color: white;
+    text-align: center;
+    width: 50px;
+    height: 100vh;
+}
+
+.container section{
+    width: 100%;
+    display: flex;
+    width: 100%;
+}
+
+section .tables{
+    width: 58%;
+}
+
+
+.leftiframe{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+.cadpage{
+    display: flex;
+}
+.mytabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    padding: 25px;
+    height: 100%;
+}
+.mytabs input[type="radio"] {
+    display: none;
+}
+.mytabs label {
+    padding: 13px;
+    background: #fff;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mytabs .tab {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    order: 1;
+    display: none;
+}
+.mytabs .tab h2 {
+    font-size: 3em;
+}
+
+.mytabs input[type='radio']:checked + label + .tab {
+    display: block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+    background: #efefef;
+}
+
+@media screen and (max-width: 1277px){
+    .lista{
+        grid-template-columns: 1fr 1fr 1fr ;
+        gap: 0px;
+    }
+    .topinfo .text{
+        display:none;
+    }
+    .topinfo .campos,
+    .topinfo .campos input{
+         width:100%;   
+    }
+}
+@media screen and (max-width: 1117px){
+    .meainperfil{
+        display:none;
+    }
+    .dados{
+        width:400px;
+    }
+}
+@media screen and (max-width: 923px){
+    .section{
+        height:94vh;
+    }
+    .section .mainList{
+        display:none;
+    }
+     .meainperfil{
+        display: flex;
+    }
+    .workarea{
+        width:100%;
+    }
+    .btns{
+        display:flex;
+    }
+    .btns a{
+        position:relative;
+        width:40px;
+        height:40px;
+        margin: 5px;
+        display:flex;
+        background:green;
+        border-radius:50%;
+    }
+    .btns a:nth-child(2){
+        background:#da3019;
+    }
+    .btns a button{
+        display:none;
+    }
+}
+@media screen and (max-width: 510px){
+    .meainperfil{
+        display:none;
+    }
+    .dados{
+        width:100%;
+    }
+    .table thead tr th{
+        font-size:12px;
+    }
+    .table tbody tr td{
+        font-size:12px;
+    }
+    *{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+
+
+body{
+    overflow: hidden;
+    background: #f6f6f9;
+}
+
+.header{
+    display: flex;
+    height: 30px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    background-color: rgb(40, 40, 40);
+}
+
+
+.header h1{
+    font-size: 25px;
+    font-weight: 650;
+}
+
+.section{
+    display: flex;
+    max-width: 100%;
+}
+
+.prodotos{
+    width: 100%;
+    border-right: 1px solid #efefef;
+    height: 94vh;
+    overflow-y: scroll;
+}
+
+.prodotos::-webkit-scrollbar{
+    background-color: #efefef;
+    width: 4px;
+}
+.prodotos::-webkit-scrollbar-thumb{
+    background-color: rgb(124, 124, 120);
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+
+.lista{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.lista a{
+    text-decoration: none;
+    color: black;
+}
+.caixa{    
+    padding: 10px;
+    background-color: #ddd8d8d5;
+    margin: 20px;
+    border-radius: 5px;
+    max-width: 160px;
+    height: 130px;
+    text-align: center;
+    font-size: 70%;
+    cursor: pointer;
+    box-shadow: 0 .2rem .5rem #cac4c47a;
+    transition: 0.5s;
+}
+
+.caixa:hover{
+    box-shadow: none;
+}
+
+.cv{
+    border: none;
+    color:white;
+    background-color: green;
+    padding: 10px;
+    cursor: pointer;
+    padding-right: 60px;
+    padding-left: 60px;
+    font-size: 11pt;
+    font-weight: bold;
+    border-radius: 6px;
+    width: 250px;
+    margin-bottom: 5px;
+    transition: 0.5s;
+}
+.cv.feicho{
+    background: #da3019;
+}
+
+.cv:hover{
+    opacity: 0.75;
+}
+
+
+
+
+.topinfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #efefef;
+    border-right: 3px solid #efefef;
+    padding: 15px;
+}
+.camposearch{
+    display: flex;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+.camposearch input{
+    border: none;
+    outline: none;
+    font-size: 12pt;
+}
+.topinfo h1{
+    color: #ddd;
+    font-size: 16pt;
+}
+
+.caixa img{
+    width: 30px;
+    height: 30px;
+}
+
+.perfil{
+    width: 30px;
+    height: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+
+.workarea{
+    margin: 10px;
+}
+
+.campotexto{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #efefef;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.campotexto input[type="text"],input[type="number"]{
+    background-color: #efefef;
+    border: none;
+    margin-left: 10px;
+    outline: none;
+    font-size: 12pt;
+}
+input[type="submit"]{
+    background-color: green;
+    border: none;
+    color:white;
+    padding: 10px;
+    text-align: center;
+    width:300px;
+    cursor: pointer;
+}
+.meanwork label{
+    margin-bottom: 10px;
+    font-size: 10pt;
+    font-weight: 650;
+    color: #938f8f;
+}
+
+.meanwork{
+    display: flex;
+    align-items: center;
+}
+
+.meainperfil{
+    margin-left: 30px;
+}
+.campotexto i{
+    color:#ddd
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+}
+#perfilmin{
+    width: 30px;
+    height: 30px;
+}
+#imagemDePerfil{
+    width: 250px;
+    height: 200px;
+    border-radius: 7px;
+}
+table{
+    width: 100%;
+    color: #444;
+    position: relative;
+    border-collapse: collapse;
+}
+table tbody tr {
+    height: 40px;
+    padding: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    background:#cccccc3d;
+    transition:0.5s;
+}
+table tbody tr:nth-child(even){
+    background:rgb(206, 206, 207);
+}
+table tbody tr:hover {
+    background:#adb5bd;
+}
+table tbody tr td{
+    font-size: 11pt;
+    color: #555;
+    font-weight: 650;
+}
+#delete{
+    text-decoration: none; 
+    padding: 4px;
+    color:red
+}
+strong{
+    position: absolute ;
+    top: 0;
+    margin-left: 21%;
+}
+
+
+.menuoption select{
+    padding: 10px;
+    border: none;
+    color: white;
+    background-color: transparent;
+    outline: none;
+}
+
+.menuoption select option{
+    color: black;
+    font-size: 12pt;
+}
+.container{
+    display: flex;
+}
+
+.container nav{
+    background-color: rgb(60, 60, 60);
+    color: white;
+    text-align: center;
+    width: 50px;
+    height: 100vh;
+}
+
+.container section{
+    width: 100%;
+    display: flex;
+    width: 100%;
+}
+
+section .tables{
+    width: 58%;
+}
+
+
+.leftiframe{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+.cadpage{
+    display: flex;
+}
+.mytabs {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 600px;
+    padding: 25px;
+    height: 100%;
+}
+.mytabs input[type="radio"] {
+    display: none;
+}
+.mytabs label {
+    padding: 13px;
+    background: #fff;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mytabs .tab {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    order: 1;
+    display: none;
+}
+.mytabs .tab h2 {
+    font-size: 3em;
+}
+
+.mytabs input[type='radio']:checked + label + .tab {
+    display: block;
+}
+
+.mytabs input[type="radio"]:checked + label {
+    background: #efefef;
+}
+
+@media screen and (max-width: 1277px){
+    .lista{
+        grid-template-columns: 1fr 1fr 1fr ;
+        gap: 0px;
+    }
+    .topinfo .text{
+        display:none;
+    }
+    .topinfo .campos,
+    .topinfo .campos input{
+         width:100%;   
+    }
+}
+@media screen and (max-width: 1117px){
+    .meainperfil{
+        display:none;
+    }
+    .dados{
+        width:400px;
+    }
+}
+@media screen and (max-width: 923px){
+    .section{
+        height:94vh;
+    }
+    .section .mainList{
+        display:none;
+    }
+     .meainperfil{
+        display: flex;
+    }
+    .workarea{
+        width:100%;
+    }
+    .btns{
+        display:flex;
+    }
+    .btns a{
+        position:relative;
+        width:40px;
+        height:40px;
+        margin: 5px;
+        display:flex;
+        background:green;
+        border-radius:50%;
+    }
+    .btns a:nth-child(2){
+        background:#da3019;
+    }
+    .btns a button{
+        display:none;
+    }
+}
+@media screen and (max-width: 510px){
+    .meainperfil{
+        display:none;
+    }
+    .dados{
+        width:100%;
+    }
+    .table thead tr th{
+        font-size:12px;
+    }
+    .table tbody tr td #perfilmin{
+        width:20px;
+        height:20px;
+    }
+}
+}

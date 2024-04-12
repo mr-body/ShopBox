@@ -1,0 +1,490 @@
+
+#graph_chartProdutos .apexcharts-pie-area{
+    stroke: none;
+}
+
+.list_header{
+    width: 97%;
+    display: grid;
+    grid-template-columns: 1.1fr .7fr 1fr 1fr 1.5fr ;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gainsboro;
+    margin: 0 10px;
+}
+.list_header h1{
+    width: 100%;
+    font-size: 10pt;
+    margin-bottom: 5px;
+    text-align: center;
+    padding-top: 5px;
+    color: rgb(182, 175, 175);
+    font-weight: 550;
+    text-transform: capitalize;
+}
+
+.list_products.Vendas{
+    width: 100%;
+    height: 95%;
+    margin-right: .5rem;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 1fr;
+    justify-content: start;
+    gap: .5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.list_products.Vendas .card{
+    flex: none;
+    width: 100%;
+    height: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(52 52 52);
+}
+.list_products.Vendas .card:hover{
+    box-shadow: none;
+    background: rgb(52 52 52 / 86%);
+    cursor: pointer;
+}
+
+.list_products.Vendas .card h1{
+    width: 100%;
+    font-size: 10pt;
+    text-align: center;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    color: rgb(237 224 224);
+    font-weight: 550;
+    text-transform: capitalize;
+}
+
+
+
+
+
+
+
+
+
+
+
+.right.produtos .recent-updates .updates .top{
+    width: 100%;
+    padding-bottom: 2px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
+.right.produtos .recent-updates .updates .top h1{
+    font-size: 14pt;
+}
+.right.produtos .recent-updates .updates .top .icon{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 10pt;
+}
+.right.produtos .recent-updates .updates .top .icon a{
+    padding: 1px 7px;
+    padding-top: 6px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    background: var(--color-light);
+    border-radius: 6px;
+}
+.right.produtos .recent-updates .updates .body{
+    margin-top: .3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.right.produtos .recent-updates .updates .body .frist{
+    width: 100%;
+    display: grid;
+    grid-template-columns: .3fr auto;
+}
+.right.produtos .recent-updates .updates .body .frist .frist_item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: .4rem;
+    padding: 5px;
+    padding-top: 2px;
+}
+.double{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 666;
+}
+.double:first-child{
+    margin-top: 0px;
+}
+.double.m{
+    padding-right: 5px;
+    margin: .2rem;
+}
+.right.produtos .recent-updates .updates .body span{
+    margin-right: .3rem;
+    height: 70px;
+    border-radius: 6px;
+    font-size: 40pt;
+    padding-right: 15px;
+    border-right: 1px dashed darkgray;
+
+}
+
+
+.upload-file.vendidos{
+    font-size: 4rem;
+    width: 80%;
+    height: 66px;
+    padding: 5px 0px; 
+    margin-bottom: 0rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.upload-file.vendidos i{
+    margin-bottom: .5rem;
+    padding-right: .8rem;
+    height: 60px;
+    display:flex;
+    align-items: center;
+    border-right: 1px solid #d5d5d5;
+}
+.upload-file.vendidos .textosVend{
+    padding-left: .5rem;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+.upload-file.vendidos .textosVend div{
+    width: 100%;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10pt;
+    
+}
+.upload-file.vendidos .textosVend div span:first-child{
+    font-weight: 666;
+}
+
+.container#formPreviewsVendas {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    
+}
+.container#formPreviewsVendas .textboxs{
+    position:relative;
+    padding-left:15px;
+    width: 83%;
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 0px;
+}
+.container#formPreviewsVendas .textboxs .card-floating{
+    position:relative;
+    width:70%;
+    display: flex;
+    align-items:center;
+    flex-direction:column;
+}
+.container#formPreviewsVendas .textboxs .card-floating div{
+    position:relative;
+    padding:10px 0rem;
+    padding-right: 1rem;
+    margin:5px 0;
+    width:100%;
+    height:100px;
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    justify-content:center;
+    background:ghostwhite;
+    border-radius: 6px;
+    box-shadow: 0 .2rem .3rem #f1eded;
+    transition: .5s;
+}
+.container#formPreviewsVendas .textboxs .card-floating div:hover{
+    box-shadow: none;
+}
+.container#formPreviewsVendas .textboxs .card-floating div span{
+    font-weight:600;
+    font-size: 12pt;
+    margin-top:1.9rem;
+}
+.container#formPreviewsVendas .textboxs .card-floating div .free{
+    position:absolute;
+    top:.5rem;
+    left: .2rem;
+    margin:0 5px;
+    margin-left: .5rem;
+    width:90%;
+    padding-bottom: 1.4rem;
+    height: 30px;
+    display:flex;
+    align-items:top;
+    flex-direction:row;
+    justify-content: space-between;
+    border-radius: 0px;
+    border-bottom: 1px solid #e2dfdf;
+    font-weight:666;
+    box-shadow: none;
+}
+.container#formPreviewsVendas .textboxs .card-floating div .free span{
+    font-size: 12pt;
+    text-transform:uppercase;
+    margin:0;
+}
+.container#formPreviewsVendas .textboxs .card-floating div .free #icon{
+    margin-right:.5rem;
+    padding:9px;
+    width: 30px;
+    height: 30px;
+    display:flex;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 .1rem .0rem #d7d1d1;
+}
+
+.container#formPreviewsVendas .textboxs .card-list{
+    position:relative;
+    width:100%;
+    max-height:430px;
+    padding: 5px;
+    margin: 0 1rem;
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border:1px solid rgba(0,0,0,.1);
+    border-radius: 4px;
+    box-shadow: 0 .2rem .3rem #f1eded;
+    background: white;
+    transition: .5s;
+}
+.container#formPreviewsVendas .textboxs .card-list .list_card_list{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overflow: hidden;        
+    overflow-y:auto;
+}
+.container#formPreviewsVendas .textboxs .card-list:hover{
+    box-shadow: none;
+}
+
+.container#formPreviewsVendas .textboxs .card-list .heading-Modal{
+    width: 100%;
+    padding:5px 0;
+    text-align: center;
+    font-size: 13pt;
+    border-bottom: 1px solid #e2dcdc;
+    margin-bottom:.2rem;
+}
+.container#formPreviewsVendas .textboxs .card-list .list_card_list div{
+    flex:none;
+    width: 100%;
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom:1px solid #e2dcdc;
+    background:ghostwhite;
+    border-radius:0px;
+    padding: 5px;
+    
+}
+.container#formPreviewsVendas .textboxs .card-list .list_card_list div:nth-child(even){
+    background:#cccccc3d;
+}
+.container#formPreviewsVendas .textboxs .card-list .list_card_list div span:first-child{
+    font-size: 10pt;
+    font-weight: 666;
+    margin-left: 3px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+.container#formPreviewsVendas .textboxs .card-list .list_card_list div span:last-child{
+    font-size: 12px;
+    font-weight: 520;
+    margin-right: 2px;
+}
+/* style for modal products */
+#graph_produtoEdit{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 5px;
+    margin: 0 5px;
+    border-top:  1px solid rgba(34, 33, 33, 0.226);
+}
+
+
+
+
+
+
+/*pc*/
+@media only screen and (min-width:998px){   
+    #Produtos{
+        display: grid;
+        width: 98%;
+        height: 100vh;
+        margin: 0 auto;
+        gap: 1.8rem;
+        grid-template-columns: auto 29rem;
+    }
+    #Produtos .right .recent-updates{
+        margin-top: .5rem;
+        text-transform: capitalize;
+    }
+    #Produtos .right .recent-updates .updates {
+        padding-left: 1rem;
+    }
+    #graph_chartProdutos .apexcharts-legend{
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-width: 998px) {
+    #graph_chartProdutos {
+        width: 120%;
+        margin-left: -3rem;
+    }
+    .list_products.Vendas{
+        width: 100%;
+        height: 90%;
+        margin-right: .5rem;
+        padding: .5rem;
+        padding-top: 1.5rem;
+    }
+
+}
+   
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+main .header{
+    background-color: rgba(255, 255, 255, 0.289);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+
+main .lista{
+    width: 100%;
+     overflow-x: scroll;
+}
+
+main .lista .dados{
+    flex-direction: column;
+    width: 100%;
+}
+.listRela{
+    overflow-x: scroll;
+}
+main .lista .dados .linha #header,#section{
+    padding: 10px;
+    display: grid;
+    align-items: center;
+    text-align: left;
+    grid-template-columns: 1fr 1fr 1fr 0.8fr 0.5fr 0.5fr .5fr;
+    background-color: #efefef85;
+    margin: 8px 20px 8px 20px;
+    border: 2px solid rgba(221, 221, 221, 0.646);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+main .lista .dados .linha #section:hover{
+   background-color: rgba(221, 221, 221, 0.55);
+   transform: rotateY(10deg);
+}
+main .lista .dados .linha #section:nth-child(even):hover{
+    background: rgba(255, 255, 255, 0.701);
+}
+
+main .lista .dados .linha #section:nth-child(even){
+    background: white;
+}
+
+main .lista .dados .linha #header{
+    padding: 15px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: none;
+    border: none;
+    margin-bottom: -9px;
+}
+
+main .lista .dados .linha #section img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+main .lista .dados .linha #section button{
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.352);
+    margin-left: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(221, 221, 221, 0.762);
+} 
+
+main .lista .dados .linha #section button i{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 17pt;
+}
+
+
+
+
+

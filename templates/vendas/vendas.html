@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='./assets/image/site/teste5.png') }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/main.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.add.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.home.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.Produtos.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.vendas.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/mobile.css') }}">
+
+
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        body{
+            overflow: hidden;
+        }
+        .header{
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            color: white;
+            background-color: rgb(40, 40, 40);
+        }
+        .logout{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-dark);
+            padding: 5px;
+            border-radius: 50%;
+        }
+        .logout i{
+            margin-top: 3px;
+            margin-right: 3px;
+            color: #fff;
+            font-size: 13pt;
+            text-align: center;
+        }
+
+        .list{
+            background-color: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    {% if dadosUser.accounttype != "admin" %}
+    <form method="POST" action="{{ url_for('logout') }}">
+        <button type="submit" class="logout">
+            <i class=" fi-rr-arrow-right-to-bracket"></i>
+        </button>
+    </form>    
+        
+    {% endif %}
+
+    <div class="header">
+        <h1 class="heading" onclick="abertura()">Sistema de Vendas {{keycode}}</h1>
+        <div class="header-left" onclick="lista()" style="cursor:pointer;">
+            <h1>Total: <span id="totalVendas">{{total}}<i>kz</i></span></h1>
+        </div>
+    </div>
+    <div class="contain" id="Produtos" style="height: 100%;">
+        <main id="main" style="overflow: hidden;">
+            <div class="list_header">
+                <h1>ID</h1>
+                <h1 class="n-media">Hora / Data</h1>
+                <h1 class="n-media">Vendedor</h1>
+                <h1 class="n-media">Pagamento</h1>
+                <h1 class="n-media">Quantidade</h1>          
+                <h1>Total </h1>
+                <h1>Pago</h1>          
+                <h1>Troco</h1>
+                <h1>opcao</h1>          
+
+            </div>
+            <div class="list_products Vendas">
+                {% for row in data %}
+                    {% if row[6] <= 0 %}
+                        {% set card_color = "background:green" %}
+                    {% elif row[7] < 0 %}
+                        {% set card_color = "background:red" %}
+                    {% endif %}
+
+                    {% if row[6] == 0 and row[7] < 0 %}
+                        {% set card_color = "background:orange" %}
+                    {% endif %}
+                                        
+                    <div class="card" style="{{ card_color }}" id="{{ card_id }}" ondblclick="revenda('{{row[8]}}')">
+                        <h1>{{ row[8] }}</h1>
+                        <h1 class="n-media">{{ row[1] }}</h1>
+                        <h1 class="n-media">{{ row[2] }}</h1>
+                        <h1 class="n-media">{{ row[3] }}</h1>
+                        <h1 class="n-media">{{ row[4] }}'Items</h1>
+                        <h1>{{ "%.2f"|format(row[5]) }}</h1>
+                        <h1>{{ "%.2f"|format(row[6]) }}</h1>
+                        <h1>{{ "%.2f"|format(row[7]) }}</h1>
+                        <h1><a onclick="revenda('{{ row[8] }}')">Rennbolso</a></h1>
+                    </div>
+                {% endfor %}
+            </div>
+    
+            <a href="#right" class="move btn-move-main active">
+                <span class=" fi-rr-arrow-small-right"></span>
+            </a>
+        </main>
+        <div id="right" class="right produtos">
+            <div class="recent-updates" style="max-height:100px">
+                <div class="updates">
+                    <div class="top">
+                        <h1>Opções de Vendas</h1>
+                        <div class="icon">
+                            <a href="#" title="Imprimir os Dados"><i class="fi-rr-print"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="body">
+                        
+                        <div class="frist">
+                            <span class="fi-rr-shopping-cart-check"></span>
+                            <div class="frist_item">
+                                <div class="double">
+                                    <label>Total:</label>
+                                    <label><strong>{{total}}</strong></label>
+                                </div>
+                                <div class="double">
+                                    <label>Divida:</label>
+                                    <label><strong>{{desconto}}</strong></label>
+                                </div>
+                                <div class="double">
+                                    <label>Vendidos:</label>
+                                    <label><strong>{{vendido}}</strong></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <label class="header-line" style="--i: 12pt;--b: 1px;">Melhor Caixa:</label>
+                        <div class="double m">
+                            <label>Caixa:</label>
+                            <label>0</label>
+                        </div>
+                        <div class="double m">
+                            <label>Usuario:</label>
+                            <label>{{user}}</label>
+                        </div>
+                        {% for row in relatorio %}
+                        <div class="double m">
+                            <label>TOTAL NO {{row[0]}}:</label>
+                            <label><strong>{{row[1]}}</strong></label>
+                        </div>
+                        {% endfor %}
+                        <br>
+                        <center style="width: 100%;">
+                            <a href="/vendas/new"><button class="cv" style="width: 100%;">Nova Venda</button></a>
+                            <a href="#"><button class="cv list" onclick="relatorio()" style="width: 100%; font-size: 90%;">Impimir relatorio das vendas</button></a>
+                            <a href="#"><button class="cv feicho" onclick="receita()" style="width: 100%; font-size: 90%;">Impimir Receita das vendas</button></a>
+                            <a href="#"><button class="cv feicho" onclick="reenbolsoPrinter()" style="background-color: blueviolet;width: 100%; font-size: 90%;">Impimir Receita das reenbolso</button></a>
+                        </center>
+                    </div>
+                </div>
+                <br>
+                <div class="updates">
+                    <div class="top">
+                        <h1>Fiecho do dia</h1>
+                        <div class="icon">
+                            <a href="#" title="Imprimir os Dados"><i class="fi-rr-print"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="body">
+                        
+                        <div class="frist">
+                            <span class="fi-rr-comment-dollar"></span>
+                            <div class="frist_item">
+                                <div class="double">
+                                    <label>Divida:</label>
+                                    <label><strong>{{desconto}}</strong></label>
+                                </div>
+                                <div class="double">
+                                    <label>DateTime:</label>
+                                    <label><strong style="color:red">Indispunivel</strong></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for row in dividas_feitas %}
+                            <div class="double m" style="display: block;background-color: #ddd;padding: 10px;border-radius: 5px;contain: content;">
+                                <label style="text-transform:uppercase;">{{row[2]}}</label>
+                                <div style="margin-left: 70px">
+                                    <label>{{row[3]}}</label>
+                                    <label style="position: absolute;right: 5%;">{{row[1]}}</label>
+                                </div>
+                                <div class="delete_divida" onclick="deleter_divida('{{row[0]}}')" style="position:absolute;top:0;right: 0;background-color: #333;padding: 3px;color: white;width: 20px;text-align: center;border-radius: 3px;">
+                                    X
+                                </div>
+                            </div>
+                        {% endfor %}    
+                        <br>
+                        <center style="width: 100%;">
+                            <button class="cv list" onclick="optionstatus('FEICHO')" style="width: 100%; font-size: 90%;">feicho do dia</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <div class="recent-updates">
+                  
+                        <style>
+                            .lista_vendas{
+                                margin: 0;
+                                text-align: left;
+                                font-size: 12pt;
+                                padding: 0;
+                                position: absolute;
+                                overflow: scroll;
+                                background: white;
+                                top: 5%;
+                                right: 0;
+                                height: 95vh;
+                                width: 450px;
+                                padding: 80px;
+                                display: none;
+                            }
+                            .show{
+                                display: block;
+                            }
+                        </style>
+                        <div class="lista_vendas">
+                           <ul style="margin-top: 20px">
+                                <center>
+                                    <h1>Lista de Vendas</h1>
+                                <p>Mata sede</p>
+                                </center>
+                                {% for row in lista %}
+                                <li style="margin-top:15px"><strong>{{row[0]}}</strong></li>
+                                <ul>
+                                    <li style="margin-left: 30px;">{{row[1]}} x {{row[2]}} <strong style="margin-left: 70px;position: absolute;right: 20%;">{{row[3]}}</strong></li>
+                                </ul><br>
+                                {% endfor %}
+                           </ul>
+                    </div>
+
+                    <style>
+                        .lista_vendas_abertura{
+                            margin: 0;
+                            text-align: left;
+                            font-size: 12pt;
+                            padding: 0;
+                            position: absolute;
+                            overflow: scroll;
+                            background: white;
+                            top: 5%;
+                            left: 0;
+                            height: 95vh;
+                            width: 450px;
+                            z-index: 2;
+                            padding: 40px;
+                            display: none;
+                        }
+                        .show{
+                            display: block;
+                        }
+                    </style>
+                    <div class="lista_vendas_abertura">
+                       <ul style="margin-top: 20px">
+                            <center>
+                                <h1>Lista de Entrada</h1>
+                            <p>Mata sede</p>
+                            </center>
+                            {% for row in entrada %}
+                                {% if row[4] <= 0 %}
+                                {% set view = "none" %}
+                            {% endif %}
+                            <li style="margin-top:15px; display:{{ view }}"><strong>{{row[1]}}</strong></li>
+                            <ul style="display:{{ view }}">
+                                <li style="margin-left: 30px;">{{row[2]}}
+                                <strong style="margin-left: 70px;position: absolute;right: 20%;">
+                                    {% if row[3] != 0 %}
+                                        {% set num_caixas = row[4] // row[3] %}
+                                        {% set num_restantes = row[4] % row[3] %}
+                                        {% if num_restantes == 0 %}
+                                            {{ num_caixas }} C
+                                        {% else %}
+                                            {{ num_caixas }}/{{ num_restantes }}
+                                        {% endif %}
+                                    {% else %}
+                                        {{ "erro" }}
+                                    {% endif %}
+                                </strong>
+                            </li>
+                            <hr>
+                            </ul>
+                            {% endfor %}
+                       </ul>
+                </div>
+                </div>
+            </div>
+    
+            
+            <a href="#main" class="move btn-move-right ">
+                <span class=" fi-rr-arrow-small-left"></span>
+            </a>
+        </div>
+        
+    </div>
+    
+    
+    
+    
+
+
+
+
+
+<script src="{{ url_for('js_routes.jquery') }}"></script>
+<script src="{{ url_for('js_routes.bootstrap') }}"></script>
+<script src="{{ url_for('js_routes.script') }}"></script>
+<script>
+    function activeLinkSearch(tipo) {
+        // body...
+        document.querySelector('#prodSelect').click();
+        $('#PainelMain').attr('src', tipo);
+    }
+
+    function revenda(e)
+    {
+        window.location.href = `/revenda/${e}`
+    }
+
+    function deleter(e)
+    {
+        window.location.href = `/vendas/deleteVenda/${e}`
+    }
+
+    function receita() {
+        if (confirm("Deseja Realmente imprimir a receita")) {
+            // Fazer uma requisição AJAX
+            fetch('/vendas/feicho', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    alert("Receita imprimida com sucesso")
+                }
+            })
+            .catch(function (error) {
+                console.error('Erro:', error);
+            });
+        }
+    }  
+
+    function relatorio() {
+        if (confirm("Deseja Realmente imprimir o relatorios")) {
+            // Fazer uma requisição AJAX
+            fetch('/vendas/relatorio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.success) {
+                    alert("Relatorio imprimido com sucesso")
+                }
+            })
+            .catch(function (error) {
+                console.error('Erro:', error);
+            });
+        }
+    }  
+
+    function lista(){
+        $(".lista_vendas").toggleClass("show")
+    }
+
+    function abertura(){
+        $(".lista_vendas_abertura").toggleClass("show")
+    }
+
+    function optionstatus(e) {
+        var config = prompt("Codigo do gerente")
+
+        if(config !== "" && config !== null)
+        {
+            if(config == "Helena1933")
+            {
+                // Fazer uma requisição AJAX
+                window.location.href = `/chart/abertura/padrao/${e}`
+            }else{
+                alert("codigo Incorrecto")
+            }
+        }
+    }
+
+    document.addEventListener("keydown", function(event) {
+            switch(event.key) {
+                case "Insert":
+                    window.location.href="/vendas/new"
+                break;
+            }
+        });
+</script>
+</body>
+
+</html>

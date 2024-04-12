@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.add.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.Produtos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.relatorio.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/mobile.css') }}">
+
+
+   
+    <!-- links scripts -->
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+    <script src="{{ url_for('js_routes.apexcharts') }}"></script>
+
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <div class="contain" id="Produtos" style="height: 100%;display: flex;flex-direction: column;">
+        <main id="main" style="overflow: hidden;">
+            <div class="header">
+                <h1 class="heading">RELATORIOS</h1><br>
+            </div>
+            <div class="lista">
+                <div class="dados">
+                    <div class="linha">
+                        <div id="header">
+                            <span>Responsavel</span>
+                            <span>Data</span>
+                            <span>Vend. TPA</span>
+                            <span>Vend. PGM</span>
+                            <span>Total</span>
+                            <span>Caminho</span>
+                            <span style="margin-left:30px">option</span>
+                        </div>
+                    </div>
+                    <div class="linha listRela" >
+                        {% for row in data %}
+                            <div id="section" ondblclick="openFile('static/reports/{{row[13]}}.pdf')">
+                                <span style="display:flex;align-items: center;">
+                                    <img src="/static/post/users/{{row[1]}}.png" alt=""  style="margin-right:9px">
+                                    <div>
+                                        <strong>{{row[1]}}</strong><br>
+                                        <span>{{row[12]}}</span> 
+                                    </div>
+                                </span>
+                                <span>
+                                    <strong style="text-transform:uppercase;"><span style="color:green">{{row[3]}},</span> {{row[4]}} De {{row[5]}}</strong><br>
+                                    <i>{{row[2]}} - {{row[6]}}</i>
+                                </span>
+                                <span>
+                                    <strong style="font-size:12pt">{{row[7]}}<i>Kz</i></strong><br>
+                                    <span style="font-size:7pt">{{row[8]}}%</span>
+                                </span>
+                                <span>
+                                    <strong style="font-size:12pt">{{row[9]}}<i>Kz</i></strong><br>
+                                    <span style="font-size:7pt">{{row[10]}}%</span>
+                                </span>
+                                <span>
+                                    <strong style="font-size:14pt">{{row[11]}}<i>Kz</i></strong><br>
+                                </span>
+                                <span>C:/devware/cantee...</span>
+                                <span>
+                                    <button style="opacity:0"><i class="fi-rr-trash"></i></button>
+                                    <button onclick="openFile('{{row[13]}}.pdf')"><i class="fi-rr-move-to-folder-2"></i></button>
+                                </span>
+                            </div>
+                        {% endfor%}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    
+    
+    
+
+
+
+  
+    <!-- links scripts -->
+    <script src="{{ url_for('js_routes.bootstrap') }}"></script>
+    <script src="{{ url_for('js_routes.script') }}"></script>
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+<script>
+
+    function openFile(path)
+    {
+        // Fazer uma requisição AJAX
+      fetch('/report/open', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'path=' + encodeURIComponent(path),
+      })
+      .then(function(response) {
+          return response.json();
+      })
+      .then(function(data) {
+          if (data.success) {
+              console.log("documento aberto")
+          } else {
+              alert(`erro ao abrir o documento`);
+          }
+      })
+      .catch(function(error) {
+          console.error('Erro:', error);
+      });
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: sans-serif;
+}
+
+body{
+	overflow: hidden;
+}
+.container{
+	display: flex;
+    max-width: 100%;
+    padding: 20px;
+}
+.dados{
+    width: 100%;
+    border-right: 1px solid #efefef;
+    height: 94vh;
+}
+
+.dados input{
+	font-size: 15pt;
+	font-weight: 600;
+	background: none;
+	border: none;
+
+}
+
+.buttons{
+	/* display: flex; */
+	width: 50%;
+	padding: 10px;
+}
+
+.buttons button{
+	width: 70px;
+	height: 70px;
+	border: none;
+	font-size: 15pt;
+	padding: 14px;
+	border-radius: 10px;
+	margin: 10px;
+	background-color: #d3d1d1;
+}
+
+.buttons button:hover{
+	opacity: 70%;
+	cursor: pointer;
+} 
+
+.buttons button.valor-btn{
+	background: transparent;
+	background-color: rgb(40, 40, 40);
+	color: white;
+}
+
+.buttons button.ce-btn{
+	background-color: maroon;
+	color: white;
+}
+
+.buttons button.c-btn{
+	background-color: red;
+	color: white;
+}
+
+.formulario{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	padding: 10px;
+}
+
+select{
+	position: absolute;
+	right: 0;
+	border: none;
+	padding: 10px;
+	outline: none;
+	margin-right: 10px;
+}
+
+@media screen and (max-width: 1171px) {
+	.buttons{
+		/* display: flex; */
+		width: 50%;
+		padding: 10px;
+	}
+	
+	.buttons button{
+		width: 60px;
+		height: 50px;
+		border: none;
+		font-size: 12pt;
+		padding: 14px;
+		border-radius: 10px;
+		margin: 5px;
+		background-color: #d3d1d1;
+	}
+}

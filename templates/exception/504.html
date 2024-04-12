@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}">	
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css')}}"> 
+
+    <style type="text/css">
+    	body{
+    		width: 100%;
+    		height: 100vh;
+    		display: flex;
+    		align-items: center;
+    		justify-content: center;
+    		flex-direction: column;
+    		overflow: hidden;
+    	}
+    	button{
+    		cursor: pointer;
+    		width: 300px;
+    		height: 50px;
+    		padding: 10px;
+    		background: #333;
+    		color: #fff;
+    		text-decoration: none;
+    		border-radius: 6px;
+    		border: none;
+    		display: flex;
+    		font-weight: 650;
+    		font-size: 15pt;
+    		align-items: center;
+    		justify-content: center;
+    		opacity: 1;
+    		transition: .5s;
+    	}
+    	button:hover{
+    		opacity: .7;
+    	}
+    	h1{
+    		font-size: 20pt;
+    		font-weight: 650;
+    		margin-bottom: 1rem;
+    	}
+    	.logout{
+            width: 40px;
+            position: absolute;
+            height: 40px;
+            right: 1rem;
+            bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        .logout i{
+            margin-top: 3px;
+            margin-right: 3px;
+            color: #fff;
+            font-size: 13pt;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+    {% if dadosUser.accounttype != "admin" %}
+	    <form method="POST" action="{{ url_for('logout') }}">
+	        <button type="submit" class="logout">
+	            <i class=" fi-rr-arrow-right-to-bracket"></i>
+	        </button>
+	    </form>    
+	        
+    {% endif %}
+
+	<h1>Caixa Feichado</h1>
+        <button type="submit" onclick="optionstatus('ABERTURA')">
+            <h3 class="titleSidbar">Efectiar abertura</h3>
+        </button>
+
+
+	<script type="text/javascript">
+        function optionstatus(e) {
+			var config = prompt("Codigo do gerente")
+
+			if(config !== "" && config !== null)
+			{
+				if(config == "Helena1933")
+				{      
+					// Fazer uma requisição AJAX
+					window.location.href = `/chart/abertura/padrao/${e}`
+				}else{
+					alert("codigo Incorrecto")
+				}
+			}
+		}
+    </script>
+	</body>
+</html>

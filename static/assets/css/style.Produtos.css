@@ -1,0 +1,508 @@
+#graph_chartProdutos .apexcharts-pie-area{
+    stroke: none;
+}
+
+.list_products{
+    width: 100%;
+    height: 95%;
+    margin-right: .5rem;
+    padding: .5rem;
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+    justify-content: start;
+    gap: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.list_products::-webkit-scrollbar{
+    width: 10px;
+ }
+ 
+.list_products::-webkit-scrollbar-track{
+    background-color: #fff;
+    border-radius: 5px;
+ }
+ 
+.list_products::-webkit-scrollbar-thumb{
+    background-color: #444;
+    border-radius: 5px;
+ }
+ 
+
+.list_products .card{
+    flex: none;
+    width: 100%;
+    height: 200px;
+    padding: 0 25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    border: none;
+    background: #ddd;
+    box-shadow: 0 1rem 1rem #dfdcdc73;
+    border-radius: 12px;
+    transition: .5s;
+    scroll-snap-align: start;
+    z-index: 2;
+}
+.list_products .card:hover{
+    transform: scale(1.1);
+    background-color: #e0e0e0d5;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.list_products .card .number{
+    position: absolute;
+    top: .2rem;
+    left: .5rem;
+    font-size: 8rem;
+    color: rgb(41, 41, 41);
+}
+.list_products .card .profile-photo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 5px solid rgb(192, 191, 191);
+    z-index: 1;
+}
+.list_products .card .profile-photo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.list_products .card .texto{
+    width: 100%;
+    padding-bottom: 2px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.list_products .card .texto h1{
+    font-size: 10pt;
+    margin-top: 5px;
+    color: rgba(55, 55, 55, 0.822);
+}
+.list_products .card .texto h2{
+    width: 100%;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 650;
+    font-size: 10pt;
+    color: rgb(31, 31, 31);
+}
+.list_products .card .texto .qtd{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px;
+    width: 50px;
+    height: 25px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    color: #fff;
+    font-weight: 650;
+    background: #363949;
+    cursor: pointer;
+    /* background: #7d8da1 */
+}
+.list_products .card .texto .category{
+    color: gray;
+    font-weight: 650;
+    text-transform: capitalize;
+    text-align: center;
+}
+.list_products .card .number{
+    color: var(--color-info-light);
+    font-size: 7pt;
+    opacity: .4;
+}
+
+
+.right.produtos .recent-updates .updates .top{
+    width: 93%;
+    margin-left: .8rem;
+    padding-bottom: 2px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+}
+.right.produtos .recent-updates .updates .top h1{
+    font-size: 14pt;
+}
+.right.produtos .recent-updates .updates .top .icon{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 10pt;
+}
+.right.produtos .recent-updates .updates .top .icon a{
+    padding: 1px 7px;
+    padding-top: 6px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    background: var(--color-light);
+    border-radius: 6px;
+}
+.right.produtos .recent-updates .updates .body{
+    margin-top: .3rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.right.produtos .recent-updates .updates .body .frist{
+    width: 100%;
+    display: grid;
+    grid-template-columns: .3fr auto;
+}
+.right.produtos .recent-updates .updates .body .frist .frist_item{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: .4rem;
+    padding: 5px;
+    padding-top: 2px;
+}
+.double{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 666;
+}
+.double:first-child{
+    margin-top: 0px;
+}
+.double.m{
+    padding-right: 5px;
+    margin: .2rem;
+}
+.right.produtos .recent-updates .updates .body span{
+    margin-right: .3rem;
+    height: 70px;
+    border-radius: 6px;
+    font-size: 40pt;
+    padding-right: 15px;
+    border-right: 1px dashed darkgray;
+
+}
+
+#btn_option{
+    position: absolute;
+    top: 5px;
+    left: 8.5px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background: rgba(216, 213, 213, 0.726);
+    border-radius: 50%;
+    transition: 0.7s;
+}
+.list_products .card #btn_option:hover{
+    left: 12.5px;
+    cursor: pointer;
+    background: rgba(199, 197, 197, 0.726);
+}
+
+.optionsProdCard{
+    position: absolute;
+    display: none;
+    top: 2.3rem;
+    left: 10px;
+    width: 100px;
+    height: 50px;
+    background: rgba(243, 236, 236, 0.849);
+    box-shadow: 0 4px .4rem rgba(170, 166, 166, 0.404);
+    opacity: 0;
+    transition: 0.5s;
+}
+#btn_option.active ~ .optionsProdCard{
+    display: inline;
+    opacity: 1;
+    z-index: 4;
+}
+.optionsProdCard form input,
+.optionsProdCard div input{
+    width: 100%;
+    text-align: left;
+    font-weight: 650;
+    padding-left: 1rem;
+    background: rgba(243, 236, 236, 0.849);
+    cursor: pointer;
+    height: 25px;
+}
+.optionsProdCard form input:hover,
+.optionsProdCard div input:hover{
+    background: #3639493b;
+}
+.table_titles{
+    width: 94%;
+    padding: 0 8px ;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.table_titles i{
+    font-weight: 650;
+    font-style: normal;
+    font-size: 11pt;
+}
+
+.table_titles i:first-child{
+    text-align: left;
+}
+.table_titles i:last-child{
+    text-align: right;
+    margin-right: 3px;
+}
+
+.tb_categorias{
+    width: 100%;
+}
+.tb_categorias tbody{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lista_category{
+    padding-top: 5px;
+    padding-bottom: 10px;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.lista_category::-webkit-scrollbar{
+    width: 5px;
+ }
+ 
+.lista_category::-webkit-scrollbar-track{
+    background-color: #fff;
+    border-radius: 5px;
+ }
+ 
+.lista_category::-webkit-scrollbar-thumb{
+    background-color: #444;
+    border-radius: 5px;
+}
+.lista_category div{
+    flex: none;
+    width: 95%;
+    height: 40px;
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    background: gainsboro;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.lista_category div:nth-child(even){
+    background: #bdbdbed0;
+}
+.lista_category div:hover{
+    border-radius: 12px;
+    background: #bdbdbea1;
+}
+.right.produtos .recent-updates .updates .body .lista_category div span{
+    height: 100%;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 15px;
+    border: none;
+    color: #444;
+}
+.right.produtos .recent-updates .updates .body .lista_category div span:first-child{
+    text-align: left;
+}
+.right.produtos .recent-updates .updates .body .lista_category div span:last-child{
+    text-align: right;
+}
+.inputCategoria{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    margin: .3rem;
+    border: 2px solid var(--color-info-light);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* style for modal products */
+#graph_produtoEdit{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 5px;
+    margin: 0 5px;
+    border-top:  1px solid rgba(34, 33, 33, 0.226);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*pc*/
+@media only screen and (min-width:998px){   
+    #Produtos{
+        display: grid;
+        width: 98%;
+        height: 100vh;
+        margin: 0 auto;
+        gap: 1.8rem;
+        grid-template-columns: auto 29rem;
+    }
+    #Produtos .right .recent-updates{
+        margin-top: .5rem;
+        text-transform: capitalize;
+    }
+    #Produtos .right .recent-updates .updates {
+        padding-left: 1rem;
+    }
+    #graph_chartProdutos .apexcharts-legend{
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-width: 998px) {
+    #graph_chartProdutos {
+        width: 120%;
+        margin-left: -3rem;
+    }
+    .list_products{
+        width: 100%;
+        height: 90%;
+        margin-right: .5rem;
+        padding: .5rem;
+        padding-top: 1.5rem;
+    }
+}

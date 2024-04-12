@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='./assets/image/site/teste5.png') }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/main.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.add.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.Produtos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/mobile.css') }}">
+
+    <!-- links scripts -->
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+    <script src="{{ url_for('js_routes.apexcharts') }}"></script>
+
+
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- start display none -->
+    <form action="{{ url_for('stock.cadastrar') }}" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <div class="topButtons">
+                            <div class="titulo">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastramento de Productos</h1>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="container form-add">
+
+                            <div class="upload-file">
+                                <div class="drop-zone">
+                                    <span class="drop-zone__prompt">
+                                        <i class='image fi-rr-cloud-upload-alt'></i>
+                                        <span>Escolher Capa</span>
+                                    </span>
+                                    <input type="file" name="imagem" class="drop-zone__input">
+                                </div>
+                            </div>
+
+                            <div class="textboxs">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="barcode"
+                                        id="floatingInputInvalid" placeholder="example">
+                                    <label for="floatingInputInvalid">Codigo do Producto</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="nome"
+                                        id="floatingInputInvalid" placeholder="example" required>
+                                    <label for="floatingInputInvalid">Nome do Producto</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="preco_compra"
+                                        id="floatingInputInvalid" placeholder="00000" required>
+                                    <label for="floatingInputInvalid">Preço de Compra</label>
+                                </div>
+                                <div style="display:flex;">
+                                    <div class="form-floating" style="margin-right: 3px;" >
+                                        <input type="number" class="form-control" name="qtd"
+                                            id="floatingInputInvalid" placeholder="Quantidades de Items" required>
+                                        <label for="floatingInputInvalid">Qtd Items nas Caixas</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control inputGetqtdProd" name="qtd_caixas"
+                                            id="floatingInputInvalid" placeholder="Quantidades de caixas" value="0" required>
+                                        <label for="floatingInputInvalid">Qtd de Caixas</label>
+                                    </div>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" name="preco_venda"
+                                        id="floatingInputInvalid" placeholder="00000" required>
+                                    <label for="floatingInputInvalid">Preço de Venda</label>
+                                </div>
+                                <div class="form-floating">
+                                    <select class="form-select" name="categoria" id="floatingSelectGrid" required>
+                                        {% for data in cat %}
+                                            <option class="inputGetcatProd" selected>{{data[1]}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="floatingSelectGrid">Selecionar Categoria</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-success">Cadastrar Producto</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- end display none -->
+
+
+
+<div class="contain" style="height: 100%;">
+    <main id="main">
+        <h1 class="heading">Pagina Inicial</h1>
+        <!-- <div class="date">
+            <input type="date" name="" id="">
+        </div> -->
+        
+        <div class="insights">
+            
+            <div class="sales"  style="--dash: 320px;--clr: #129ff1;--num: 100;">
+                <div class="texto">
+                    <span class="fi-rr-chart-line-up"></span>
+                    <h2>Relatorios</h2>
+                </div>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Valor Total:</h3>
+                        <h1><i>R$</i> {{ "%.2f"|format(relatorio) }}</h1>
+                    </div>
+                    <div class="progress1">
+                        <div class="dot"></div>
+                        <svg>
+                            <circle cx="50" cy="50" r="50" ></circle>
+                            <circle cx="50" cy="50" r="50" ></circle>
+                        </svg>
+                        <div class="number">
+                            <p>100%</p>
+                        </div>
+                    </div>
+                </div>
+                <small class="text-muted">Ultimos Dias</small>
+
+            </div>
+
+            <div class="expenses"  style="--dash: 320px;--clr: #fc3e04;--num: 100;">
+                <div class="texto">
+                    <span class=" fi-rr-boxes"></span>
+                    <h2>Stock</h2>
+                </div>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Valor Total:</h3>
+                        <h1><i>R$</i>7777</h1>
+                    </div>
+                    <div class="progress1">
+                        <div class="dot"></div>
+                        <svg>
+                            <circle cx="50" cy="50" r="50" ></circle>
+                            <circle cx="50" cy="50" r="50" ></circle>
+                        </svg>
+                        <div class="number">
+                            <p>100%</p>
+                        </div>
+                    </div>
+                </div>
+                <small class="text-muted">Ultimos Dias</small>
+
+            </div>
+
+            <div id="card_status" class="income"  style="--dash: 320px;--clr: #fc3e04;--num: 84;">
+                <div class="texto">
+                    <span class=" fi-rr-shopping-cart"></span>
+                    <h2>Abertura</h2>
+                </div>
+                <div class="middle">
+                    <div class="left">
+                        <h3>Codigo:</h3>
+                        <h3>Estado:</h3>
+                    </div>
+                    <div class="left dad">
+                        <h1 id="cod">{{codigo}}</h1>
+                        <h1 id="stat">{{status}}</h1>
+                    </div>
+                </div>
+                <a onclick="optionstatus(this.textContent)" id="btn-Box" class="btn-primary" data-id="close">{{texto}}</a>
+                        
+            </div>
+
+        </div>
+
+        <div class="recent-orders">
+            <div class="graph">
+                <div class="texto">
+                    <h2>Grafico de Vendas</h2>
+                    <div class="btns">
+                        <button data-id="bar" class="btn_chart">
+                            <i class="fi-rr-chart-histogram"></i>
+                            <span>Colunas</span>
+                        </button>
+                        <button data-id="pie" class="btn_chart">
+                            <i class="fi-rr-chart-area"></i>
+                            <span>Area</span>
+                        </button>
+                        <button data-id="line" class="btn_chart active">
+                            <i class="fi-rr-chart-line-up"></i>
+                            <span>Linhas</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="graph_chart"></div>
+            </div>
+            <a href="#">Todas Vendas</a>
+        </div>
+        <a href="#right" class="move btn-move-main active">
+            <span class=" fi-rr-arrow-small-right"></span>
+        </a>
+    </main>
+    <div id="right" class="right" style="padding-right: 0rem;">
+
+        <div class="recent-updates">
+            <h1 class="title">Resumo de Dados</h1>
+            <div class="updates">
+                
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="{{ url_for('static', filename='./assets/image/site//profile-2.jpg') }}" alt="">
+                    </div>
+                    <div class="message">
+                        <p><b>Walter Santana</b> Que tal participarmos em um concurso de programação.</p>
+                        <small class="text-muted">2 Minutes Feb</small>
+                    </div>
+                </div>
+
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="{{ url_for('static', filename='./assets/image/site//profile-3.jpg') }}" alt="">
+                    </div>
+                    <div class="message">
+                        <p><b>Tania Rodrigues</b> Vamos Trabalar Juntos no GitHub nesse Domingo.</p>
+                        <small class="text-muted">8 Minutes Feb</small>
+                    </div>
+                </div>
+
+                <div class="update">
+                    <div class="profile-photo">
+                        <img src="{{ url_for('static', filename='./assets/image/site//profile-4.jpg') }}" alt="">
+                    </div>
+                    <div class="message">
+                        <p><b>Elena Montero</b> Quero cria um progect contigo com python.</p>
+                        <small class="text-muted">4 Hours Feb</small>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="sales-analytics">
+            
+            <div class="item on">
+                <div class="icon">
+                    <span class="fi-rr-apps-add"></span>
+                </div>
+                <div class="right">
+                    <div class="info">
+                        <h2>Total</h2>
+                        <small class="text-muted" style="text-align: right;right: 1.7rem;">50%</small>
+                    </div>
+                    <h1 class="tna">00000000kz</h1>
+                </div>
+            </div>
+
+            <div class="item on">
+                <div class="icon">
+                    <span class="fi-rr-inbox-out"></span>
+                </div>
+                <div class="right">
+                    <div class="info">
+                        <h2>Saida</h2>
+                        <small class="text-muted" style="text-align: right;right: 1.7rem;">50%</small>
+                    </div>
+                    <h1 class='tna' id='productsOut'>000000000kz</h1>
+                </div>
+            </div>
+
+            <div class="item on">
+                <div class="icon">
+                    <span class="fi-rr-inbox-in"></span>
+                </div>
+                <div class="right">
+                    <div class="info">
+                        <h2>Entrada</h2>
+                        <small class="text-muted" style="text-align: right;right: 1.7rem;">50%</small>
+                    </div>
+                    <h1>000000000kz</h1>
+                </div>
+            </div>
+
+
+            <a href="#open-modal" id="btn-open-modal" data-bs-toggle="modal" data-bs-target="#exampleModal" class="item add-product">
+                <div>
+                    <span class="fi-rr-plus"></span>
+                    <h3>Add Produto</h3>
+                </div>
+            </a>
+
+        </div>
+        <a href="#main" class="move btn-move-right ">
+            <span class=" fi-rr-arrow-small-left"></span>
+        </a>
+    </div>
+</div>
+<script type="text/javascript">
+    function optionstatus(e) {
+        // Fazer uma requisição AJAX
+       window.location.href = `/chart/abertura/${e}`
+    }
+</script>
+
+<script src="{{ url_for('js_routes.bootstrap') }}"></script>
+<script src="{{ url_for('js_routes.home') }}"></script>
+<script src="{{ url_for('js_routes.script') }}"></script>
+<script src="{{ url_for('js_routes.requestFlask') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de Tab Handling com CodeMirror em um Documento HTML Grande</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.3/codemirror.min.css">
+  <style>
+    .CodeMirror {
+      height: 400px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Exemplo de Tab Handling com CodeMirror em um Documento HTML Grande</h1>
+
+  <textarea id="code"></textarea>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.3/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.3/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script>
+    const textarea = document.getElementById('code');
+    const codeMirror = CodeMirror.fromTextArea(textarea, {
+      mode: 'htmlmixed',
+      lineNumbers: true,
+      autofocus: true,
+      tabSize: 2,
+      viewportMargin: Infinity
+    });
+
+    codeMirror.on('keydown', (editor, event) => {
+      if (event.key === 'Tab') {
+        event.preventDefault();
+        const doc = editor.getDoc();
+        const cursor = doc.getCursor();
+        const line = cursor.line;
+        const lineContent = doc.getLine(line);
+        const indentUnit = editor.getOption('indentUnit');
+        const indentation = ' '.repeat(indentUnit);
+
+        if (event.shiftKey) {
+          // Remove indent on Shift+Tab
+          if (lineContent.startsWith(indentation)) {
+            doc.replaceRange('', { line, ch: 0 }, { line, ch: indentUnit });
+          }
+        } else {
+          // Insert indent on Tab
+          doc.replaceRange(indentation, { line, ch: 0 });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.carrinho.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/boxicons/css/boxicons.css') }}">
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css') }}">
+
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>Total: <span id="total">0.000.000,00 <i>kz</i></span></h1>
+        </div>
+        <div class="btns">
+            <a class="f" href="pagamento">
+                <button class="cv">Concluir venda</button>
+            </a>
+            <a class="l" href="/vendas">
+                <button class="cv feicho">Fechar Carrinho</button>
+            </a>
+        </div>
+    </div>
+    <div class="section">
+        <div class="mainList" style="width: 100%;">
+            <div class="topinfo">
+                <div class="text">
+                    <h1>Lista de produtos para vender</h1>
+                </div>
+                <div class="campos">
+                    <div class="camposearch">
+                        <input type="text" id="searchText" placeholder="Busca por produtos">
+                        <i class="bx bx-search"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="prodotos" >
+
+                <div class="lista">
+                    {% for row in data %}
+                        {% if row[5] <= 0 %}
+                            {% set view = "none" %}
+                        {% endif %}
+                        <div class="caixa" style="display:{{ view }}" onclick="add('{{ row[7] }}')">
+                            <img src="{{ url_for('static', filename='./post/produtos/' + string(row[7]) + '.png') }}" alt="" class="perfil">
+                            <h2>{{ row[1] }}</h2>
+                            <h4>{{ row[2] }}</h4>
+                            <h1>{{ "%.2f"|format(row[6]) }}</h1>
+                            <h3 onclick="todosItens('{{ row[5] }}')" id="{{ row[5] }}QtdProd" class="qtd" style="--i: 1.4rem;position: absolute;top:0;right: 0;background-color: rgb(40, 40, 40);color: white;border-radius: 4px;padding: 7px;">
+                                {% if row[4] != 0 %}
+                                    {% set num_caixas = row[5] // row[4] %}
+                                    {% set num_restantes = row[5] % row[4] %}
+                                    {% if num_restantes == 0 %}
+                                        {{ num_caixas }} c
+                                    {% else %}
+                                        {{ num_caixas }}/{{ num_restantes }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ "erro" }}
+                                {% endif %}
+                            </h3>
+
+                            <div class="moreinfo">
+                               <div class="dados">
+                                 <h1>{{row[1]}}</h1>
+                                 <h2>{{ "%.2f"|format(row[6]) }}</h2>
+                                 <h3>{{row[5]}} itens</h3>
+                               </div>
+                            </div>
+                        </div>
+                    {% endfor %}                    
+                </div>
+                               
+
+            </div>
+        </div>
+        <div class="workarea">
+            <h4>Sistema de Vendas</h4>
+            <div>
+           <form id="carrinhoForm" onsubmit="add_vendas(); return false">
+                <div class="meanwork">
+                    <div class="dados">
+                        <div id="result"></div>
+                        <label for="code">Referencia</label>
+                        <div class="campotexto">
+                            <i class="bx bxs-purchase-tag"></i>
+                            <input type="text" name="code" placeholder="Quantidade + Barcode" id="code" onkeypress="handleKeyPress(event)" required autocomplete="none">
+                        </div>
+                        <input type="submit" value="Add no carrinho" class="cv" style="background: rgb(4, 68, 41); border-radius: 0px;font-size: 12pt;text-transform: uppercase;width: 100%;">
+                        <input type="submit" value="Add Quantidade" class="cv" style="border-radius: 0px;font-size: 12pt;text-transform: uppercase;width: 100%;">
+                    </div>
+                    <div class="meainperfil">
+                        <img src="{{ url_for('static', filename='/assets/image/site/transferir.jpg') }}" alt="" id="imagemDePerfil">
+                    </div>
+                </div>
+            </form>
+            </div>
+            <div style="height: 100%;">
+                <div class="table">
+                    <table>
+                      <thead>
+                        <tr style="height: 35px;border-bottom: 1px solid #ccc;">
+                          <th>IMG</th>
+                          <th style="text-align:left">Produto</th>
+                          <th style="text-align:left">Preco unit</th>
+                          <th>Quant</th>
+                          <th style="text-align:left">Total</th>
+                          <th>Opção</th>
+                        </tr>
+                      </thead>
+                      <tbody class="listaAjax">
+                        {% for row in lista %}
+                          <tr>
+                            <td><img src="{{ url_for('static', filename='post/produtos/' + string(row[0]) + '.png') }}" id="perfilmin" alt=""></td>
+                            <td style="text-align:left">{{ row[1] }}</td>
+                            <td style="text-align:left">{{ row[2] }} kz</td>
+                            <td>{{ row[3] }}</td>
+                            <td style="text-align:left">{{ row[4] }} kz</td>
+                            <td><a id="delete" onclick="deleter('{{ row[0] }}','{{ row[3] }}')" title="remover do carrinho"><span class="fi-rr-trash" style="font-size: 15pt;"></span></a></td>
+                          </tr>
+                        {% endfor %}    
+                      </tbody>                      
+                    </table>
+
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        let check = true
+
+        function focus()
+        {
+            if(check)
+            {
+                $("#code").focus()
+                check = false
+            }else{
+                $("#searchText").focus()
+                check = true
+            }
+
+        }
+
+        document.addEventListener("keydown", function(event) {
+            switch(event.key) {
+                case "Escape":
+                    window.location.href="/vendas"
+                break;
+                case "Insert":
+                    focus()
+                break;
+                case "Home":
+                    window.location.href="/vendas"
+                break;
+                case "End":
+                    window.location.href="pagamento"
+                break;
+            }
+        });
+        
+        function todosItens(e)
+        {
+            alert(`Stock totol: ${e} itens`)
+        }
+
+    </script>
+    <script src="{{ url_for('js_routes.vendas') }}"></script>
+</body>
+
+</html>

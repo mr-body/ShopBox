@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.add.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.Produtos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/mobile.css') }}">
+
+    <!-- links scripts -->
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+    <script src="{{ url_for('js_routes.apexcharts') }}"></script>
+
+
+
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        .upgrade_stock {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+
+    <!-- modal edit and delete produtos -->
+    <form action="/stock/editarProduto" method="POST" enctype="multipart/form-data">
+        <div class="modal fade" id="ModalProdutos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <div class="topButtons">
+                            <div class="titulo">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Dados do Produto: <b
+                                        id="labelGetCodProd" style="font-size: 12pt;font-weight: 500;">Mateus</b></h1>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container form-add">
+
+                            <div class="upload-file">
+                                <div class="drop-zone">
+                                    <span class="drop-zone__prompt" id="dropzonepromptVendasImage">
+                                        <i class='image fi-rr-cloud-upload-alt'></i>
+                                        <span>Escolher Capa</span>
+                                    </span>
+                                    <input type="file" name="input_add_file" class="drop-zone__input">
+                                </div>
+                            </div>
+
+                            <div class="textboxs">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control inputGetCodProd" name="input_add_cod"
+                                        id="floatingInputInvalid" placeholder="example">
+                                    <input type="text" class="form-control inputGetCodProd" name="last_cod"
+                                        id="floatingInputInvalid" placeholder="example" style="display: none;">
+                                    <label for="floatingInputInvalid">Codigo do Producto</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control inputGetnomeProd" name="input_add_nome"
+                                        id="floatingInputInvalid" placeholder="example" required>
+                                    <label for="floatingInputInvalid">Nome do Producto</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control inputGetqtd" name="input_add_qtd"
+                                        id="floatingInputInvalid" placeholder="example" required>
+                                    <label for="floatingInputInvalid">Nº de itens</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="number" class="form-control inputGetprecpCromp" name="input_add_cromp"
+                                        id="floatingInputInvalid" placeholder="00000" required>
+                                    <label for="floatingInputInvalid">Preço de compra</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input type="text" class="form-control inputGetprecpProd"
+                                        name="input_add_preco_venda" id="floatingInputInvalid" placeholder="00000"
+                                        required>
+                                    <label for="floatingInputInvalid">Preço de Venda</label>
+                                </div>
+                                <div class="form-floating">
+                                    <select class="form-select" name="input_add_cat" id="floatingSelectGrid" required>
+                                        {% for data in cat %}
+                                        <option class="inputGetcatProd">{{data[1]}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="floatingSelectGrid">Selecionar Categoria</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-primary" style="width: 200px;">Editar Produto</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+
+    <div class="contain" id="Produtos" style="height: 100%;">
+        <main id="main" style="overflow: hidden;">
+            <style>
+                .header-stcok {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 10px;
+                    text-transform: uppercase;
+                    align-items: center;
+                }
+
+                .campo_busca {
+                    display: flex;
+                    align-items: center;
+                    contain: content;
+                }
+
+                .campo_busca input {
+                    background-color: rgba(240, 248, 255, 0.743);
+                    width: 350px;
+                    padding: 15px;
+                    border-radius: 4px;
+                }
+
+                .campo_busca i {
+                    position: absolute;
+                    right: 5%;
+                }
+            </style>
+            <div class="header-stcok">
+                <h1 class="heading">Area de Produtos</h1>
+                <div class="campo_busca">
+                    <input type="text" name="" id="pesquisa" placeholder="pesquisar por produto">
+                    <i class='image fi-rr-search'></i>
+                </div>
+            </div>
+            <div class="list_products">
+                {% for row in data %}
+                {% if row[5] <= 0 %} {% set card_color="red" %} {% endif %} <div class="card"
+                    style="background:{{ card_color }}" data-nome="{{ row[1] }}" data-categoria="{{ row[2] }}"
+                    data-preco="{{ row[6] }}" data-id="{{ row[7] }}" data-caixa="{{ row[5] }}">
+                    <div class="profile-photo">
+                        <img id="{{ row[5] }}"
+                            src="{{ url_for('static', filename='post/produtos/' + string(row[7]) + '.png') }}">
+                    </div>
+                    <div class="texto">
+                        <h2 id="{{ row[5] }}nomeProd">{{ row[1] }}</h2>
+                        <h3 style="--i: 5px;" class="category"><span id="{{ row[5] }}catProd">{{ row[2] }}</span></h3>
+                        <h3 id="{{ row[5] }}QtdProd" class="qtd" style="--i: 1.4rem;">
+                            {% if row[4] != 0 %}
+                            {% set num_caixas = row[5] // row[4] %}
+                            {% set num_restantes = row[5] % row[4] %}
+                            {% if num_restantes == 0 %}
+                            {{ num_caixas }}
+                            {% else %}
+                            {{ num_caixas }}/{{ num_restantes }}
+                            {% endif %}
+                            {% else %}
+                            {{ "erro" }}
+                            {% endif %}
+                        </h3>
+                        <h1>R$ {{ "%.2f"|format(row[6]) }}</h1>
+                    </div>
+                    <i id="btn_option" class="fi-rr-menu-dots-vertical"></i>
+                    <div class="optionsProdCard">
+                        <div>
+                            <input id="btn_option_item" type="submit" value="Editar" data-bs-toggle="modal"
+                                data-bs-target="#ModalProdutos" class="btneditprod" data-qtd="{{ row[4] }}"
+                                data-nome="{{ row[1] }}" data-categoria="{{ row[2] }}" data-preco="{{ row[6] }}"
+                                data-preco_compra="{{ row[3] }}" data-id="{{ row[7] }}" data-caixa="{{ row[5] }}">
+                        </div>
+                        <div onclick="deleteProd('{{ row[7] }}')" class="btn_deletecardprod">
+                            <input type="submit" class="inputGetCodProd" name="barcode" value="{{ row[7] }}" hidden>
+                            <input type="submit" id="btn_option_item" value="Deletar">
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+    </div>
+
+    <a href="#right" class="move btn-move-main active">
+        <span class=" fi-rr-arrow-small-right"></span>
+    </a>
+    </main>
+    <div id="right" class="right produtos">
+
+        <div class="recent-updates">
+            <div class="updates">
+                <h1 class="header-line" style=" --i:13pt;--b: 1px;">Dados do Stock</h1>
+                <hr>
+                <div>
+                    <div style="display:flex;    justify-content: center;align-items: center;">
+                        <img src="{{ url_for('static', filename='assets/image/posts/produtos/box.jpg') }}"
+                            id="preview_image" alt="" style="width: 150px;height: 150px;">
+                        <div style="display: flex;flex-direction: column;margin-left: 10px;">
+                            <h2 id="preview_nome">Nome do produto</h2>
+                            <h3 id="preview_categoria">categoria</h3>
+                            <span><strong id="preview_preco">0,00 kz</strong></span><br>
+                            <div>
+                                <span>Stock atual: <br> <strong id="preview_stock">12 caixas e 7 itens</strong></span>
+                                <span id="preview_id" hidden>[hide ID]</span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <form onsubmit="upgrade(); return false" class="upgrade_stock">
+                        <div class="form-floating">
+                            <select class="form-select" name="input_add_cat" id="floatingSelectGrid2" required>
+                                <option class="inputGetcatProd" value="t" selected>Cadastrar como Nº Total Item</option>
+                                <option class="inputGetcatProd" value="i" selected>Adicionar itens</option>
+                                <option class="inputGetcatProd" value="c" selected>Adicionar Caixa</option>
+                            </select>
+                            <label for="floatingSelectGrid">Tipo de upgrade</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="number" class="form-control inputGetnomeProd" name="input_add_nome"
+                                id="floatingInputInvalid2" placeholder="example" required>
+                            <label for="floatingInputInvalid">Quantidade</label>
+                        </div>
+                        <button class="btn btn-secondary" style="border-radius: 5px;">Atualizar Stock</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="recent-updates">
+            <br>
+            <div class="updates">
+                <div class="top">
+                    <h1>Gerenciamento de Categorias</h1>
+                </div>
+
+                <form action="{{ url_for('stock.newcategory') }}" method="post" class="body">
+                    <div class="table_titles">
+                        <i>Nº</i>
+                        <i>Nome</i>
+                        <i>Qtd Items</i>
+                        <i>Opações</i>
+                    </div>
+                    <div class="lista_category">
+                        {% for row in cat %}
+                        <div>
+                            <span>0{{row[0]}}</span>
+                            <span>{{row[1]}}</span>
+                            <span>{{row[0]}}</span>
+                            <span>{{row[1]}}</span>
+                        </div>
+                        {% endfor%}
+                    </div>
+                    <div class="double m">
+                        <input class="inputCategoria" type="text" name="nome" id="" placeholder="Nome da Categoria"
+                            required>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        Cadastrar Categoria
+                    </button>
+                </form>
+            </div>
+        </div>
+
+
+        <a href="#main" class="move btn-move-right ">
+            <span class=" fi-rr-arrow-small-left"></span>
+        </a>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="{{ url_for('js_routes.bootstrap') }}"></script>
+    <script src="{{ url_for('js_routes.script') }}"></script>
+    <script>
+
+        //labelGetCodProd
+        let btn_OpenModalEdit = document.querySelectorAll('.btneditprod');
+        let listProdut = document.querySelectorAll('.list_products .card');
+        let btn_option = document.querySelectorAll('#btn_option');
+        let btn_option_item = document.querySelectorAll('#btn_option_item');
+        var idSelect = "";
+        function activeModalEditProd() {
+            // body...
+            var idProd = this.dataset.id;
+            var nome = this.dataset.nome;
+            var preco = this.dataset.preco;
+            var qtd = this.dataset.qtd;
+            var categoria = this.dataset.categoria;
+            var preco_compra = this.dataset.preco_compra;
+            var imageFilt = `/static/post/produtos/${idProd}.png`
+            $('#labelGetCodProd').text(idProd);
+            $('.inputGetCodProd').val(idProd);
+            $('.inputGetnomeProd').val(nome);
+            $('.inputGetqtd').val(qtd);
+            $('.inputGetprecpCromp').val(preco_compra);
+            $('.inputGetprecpProd').val(preco);
+            $('#floatingSelectGrid').val(categoria);
+            updateImage(imageFilt);
+
+        }
+
+        function edit() {
+            var idProd = this.dataset.id;
+            var nome = this.dataset.nome;
+            var preco = this.dataset.preco;
+            var categoria = this.dataset.categoria;
+
+            $('#preview_nome').text(nome);
+            $('#preview_preco').text(preco + "kz");
+            $('#preview_categoria').text(categoria);
+            $('#preview_stock').text(idProd);
+            $('#preview_id').text(idProd);
+
+            // Verificar se a imagem existe
+            var imageUrl = '/static/post/produtos/' + idProd + '.png';
+            $.get(imageUrl)
+                .done(function () {
+                    // Caso a imagem exista, definir o atributo 'src' do elemento '#preview_image'
+                    $('#preview_image').attr('src', imageUrl);
+                })
+                .fail(function () {
+                    // Caso a imagem não exista, definir um atributo 'src' de fallback ou mostrar uma imagem padrão
+                    $('#preview_image').attr('src', '/static/post/produtos/padrao.png');
+                    // Ou você pode ocultar o elemento completamente, se preferir:
+                    // $('#preview_image').hide();
+                });
+        }
+
+
+        btn_OpenModalEdit.forEach((item) => item.addEventListener('click', activeModalEditProd));
+
+        listProdut.forEach((item) => item.addEventListener('click', edit));
+
+        btn_option.forEach((item) => item.addEventListener('click', function () {
+            $(this).toggleClass('active');
+        }));
+
+        btn_option_item.forEach((item) => item.addEventListener('click', function () {
+            btn_option.forEach((item) =>
+                item.classList.remove('active'));
+        }));
+
+        function deleteProd(id) {
+            if (confirm("Deseja Realmente Apagar este Produto")) {
+
+                window.location.href = "/stock/deletarProduto?barcode=" + id
+            }
+        }
+
+        function upgrade() {
+            if (confirm("Deseja Realmente efetuar essa operacao")) {
+                // Fazer uma requisição AJAX
+                fetch('/stock/upgrade', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'code=' + $('#preview_id').text() + '&tipo=' + $('#floatingSelectGrid2').val() + '&qtd=' + $('#floatingInputInvalid2').val()
+                })
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        if (data.success) {
+                            alert("Stock Atualizado com sucesso")
+                            $.ajax({
+                                type: 'POST',
+                                url: '/stock/pesquisa',
+                                data: { valor: $('#pesquisa').val() },
+                                success: function (data) {
+                                    // Limpar a lista atual
+                                    $('.list_products').empty();
+
+                                    // Iterar sobre os resultados e adicionar à lista
+                                    $.each(data, function (index, string) {
+                                        let id = string[7];
+                                        let caixaHTML = `
+                                            <div class="card" style="background:${string[5] <= 0 ? 'red' : '#ddd'}" data-nome="${string[1]}" data-categoria="${string[2]}" data-preco="${string[6]}" data-id="${id}" data-caixa="${string[5]}">
+                                                <div class="profile-photo">
+                                                    <img id="${string[5]}" src="../static/post/produtos/${id}.png">
+                                                </div>
+                                                <div class="texto">
+                                                    <h2 id="${string[5]}nomeProd">${string[1]}</h2>
+                                                    <h3 style="--i: 5px;" class="category"><span id="${string[5]}catProd">${string[2]}</span></h3>
+                                                    <h3 id="${string[5]}QtdProd" class="qtd" style="--i: 1.4rem;">
+                                                        ${Math.floor(string[5] / string[4])}${string[5] % string[4] === 0 ? '' : `/${string[5] % string[4]}`}
+                                                    </h3>
+                                                    <h1>R$ ${string[6].toFixed(2)}</h1>
+                                                </div>
+                                                <i id="btn_option" class="fi-rr-menu-dots-vertical"></i>
+                                                <div class="optionsProdCard">
+                                                    <div>
+                                                        <input id="btn_option_item" type="submit" value="Editar" data-bs-toggle="modal" data-bs-target="#ModalProdutos" class="btneditprod" data-nome="${string[1]}" data-qtd="${string[4]}" data-categoria="${string[2]}" data-preco="${string[6]}" data-preco_compra="${string[3]}" data-id="${id}" data-caixa="${string[5]}">
+                                                    </div>
+                                                    <div onclick="deleteProd('${id}')" class="btn_deletecardprod">
+                                                        <input type="submit" class="inputGetCodProd" name="barcode" value="${id}" hidden>
+                                                        <input type="submit" id="btn_option_item" value="Deletar">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                        $('.list_products').append(caixaHTML);
+                                        let btn_OpenModalEdit2 = document.querySelectorAll('.btneditprod');
+                                        let listProdut2 = document.querySelectorAll('.list_products .card');
+                                        let btn_option2 = document.querySelectorAll('#btn_option');
+                                        let btn_option_item2 = document.querySelectorAll('#btn_option_item');
+                                        console.log("ok")
+                                        btn_OpenModalEdit2.forEach((item) => item.addEventListener('click', activeModalEditProd));
+
+                                        listProdut2.forEach((item) => item.addEventListener('click', edit));
+
+                                        btn_option2.forEach((item) => item.addEventListener('click', function () {
+                                            btn_option2.forEach((item) =>
+                                                item.classList.remove('active'));
+                                            $(this).toggleClass('active');
+                                        }));
+
+                                        btn_option_item2.forEach((item) => item.addEventListener('click', function () {
+                                            btn_option2.forEach((item) =>
+                                                item.classList.remove('active'));
+                                        }));
+                                    });
+                                }
+                            });
+                        } else {
+                            resetCodeInput();
+                            alert(`Erro ao atualizar o produto de referencia ${data.message}`);
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error('Erro:', error);
+                    });
+            }
+        }
+
+        $('#pesquisa').on('input', function () {
+            var valor = $(this).val();
+
+            // Fazer uma requisição AJAX
+            $.ajax({
+                type: 'POST',
+                url: '/stock/pesquisa',
+                data: { valor: valor },
+                success: function (data) {
+                    // Limpar a lista atual
+                    $('.list_products').empty();
+
+                    // Iterar sobre os resultados e adicionar à lista
+                    $.each(data, function (index, string) {
+                        let id = string[7];
+                        let caixaHTML = `
+                            <div class="card" style="background:${string[5] <= 0 ? 'red' : '#ddd'}" data-nome="${string[1]}" data-categoria="${string[2]}" data-preco="${string[6]}" data-id="${id}" data-caixa="${string[5]}">
+                                <div class="profile-photo">
+                                    <img id="${string[5]}" src="../static/post/produtos/${id}.png">
+                                </div>
+                                <div class="texto">
+                                    <h2 id="${string[5]}nomeProd">${string[1]}</h2>
+                                    <h3 style="--i: 5px;" class="category"><span id="${string[5]}catProd">${string[2]}</span></h3>
+                                    <h3 id="${string[5]}QtdProd" class="qtd" style="--i: 1.4rem;">
+                                        ${Math.floor(string[5] / string[4])}${string[5] % string[4] === 0 ? '' : `/${string[5] % string[4]}`}
+                                    </h3>
+                                    <h1>R$ ${string[6].toFixed(2)}</h1>
+                                </div>
+                                <i id="btn_option" class="fi-rr-menu-dots-vertical"></i>
+                                <div class="optionsProdCard">
+                                    <div>
+                                        <input id="btn_option_item" type="submit" value="Editar" data-bs-toggle="modal" data-bs-target="#ModalProdutos" class="btneditprod" data-nome="${string[1]}" data-qtd="${string[4]}" data-categoria="${string[2]}" data-preco="${string[6]}" data-preco_compra="${string[3]}" data-id="${id}" data-caixa="${string[5]}">
+                                    </div>
+                                    <div onclick="deleteProd('${id}')" class="btn_deletecardprod">
+                                        <input type="submit" class="inputGetCodProd" name="barcode" value="${id}" hidden>
+                                        <input type="submit" id="btn_option_item" value="Deletar">
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        $('.list_products').append(caixaHTML);
+                        let btn_OpenModalEdit2 = document.querySelectorAll('.btneditprod');
+                        let listProdut2 = document.querySelectorAll('.list_products .card');
+                        let btn_option2 = document.querySelectorAll('#btn_option');
+                        let btn_option_item2 = document.querySelectorAll('#btn_option_item');
+                        console.log("ok")
+                        btn_OpenModalEdit2.forEach((item) => item.addEventListener('click', activeModalEditProd));
+
+                        listProdut2.forEach((item) => item.addEventListener('click', edit));
+
+                        btn_option2.forEach((item) => item.addEventListener('click', function () {
+                            btn_option2.forEach((item) =>
+                                item.classList.remove('active'));
+                            $(this).toggleClass('active');
+                        }));
+
+                        btn_option_item2.forEach((item) => item.addEventListener('click', function () {
+                            btn_option2.forEach((item) =>
+                                item.classList.remove('active'));
+                        }));
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

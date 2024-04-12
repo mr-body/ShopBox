@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	
+	<style>
+		*{
+	margin: 0;
+}
+body{
+	width: 100%;
+	font-family: sans-serif;
+	background:#fff;
+}
+body h1,h2,h3{
+	text-align: center;
+	font-weight: 600;
+}
+
+center{
+	color: #ddd;
+}
+
+
+strong{
+	color: rgb(40, 40, 40);
+}
+
+html{
+	font-size: 80%;
+}
+
+table, th, td, tr {
+  padding: 6px;
+  text-align: center;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.dados{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.dados .left img{
+	width: 150px;
+	border-right:1px solid #ddd;
+	margin-right: 100px;
+}
+
+.dados .left{
+	display: flex;
+	max-width: 500px;
+}
+
+.dados .left div{
+	display: flex;
+	flex-direction: column;
+}
+
+#qrd{
+	background: #efefef;
+	padding: 10px;
+	border-radius: 3px;
+	width: 100px;
+	margin-right: 18px;
+}
+	</style>
+</head>
+<body>
+	<header>
+		<h2>RELATORIO DE VENDA</h2><br><br>	</header><br>
+
+	<div class="dados">
+		<div class="left">
+			<div>				
+				<span>Vendedor:<strong> {{nome}}</strong></span><br><br>
+				<span>ID:<strong> {{id}}</strong></span><br><br>
+				<span>DATA:<strong> 28/06/2023</strong></span><br><br>
+				<span>TOTAL:<strong> {{ total_vendas }}</strong></span><br><br>
+			</div>
+		</div>
+	</div>
+	<br>
+	<section>
+	    <table style="width: 100%;">
+	        <tr>
+	            <th colspan="2" style="background: #333;color: #efefef;">RELATÓRIO DES FUNCIONARIOS</th>
+	        </tr>
+	        <tr>
+	            <th style="width: 50%;">Nome do funcionario</th>
+	            <th style="width: 50%;">Total Vendido</th>
+	        </tr>
+	        {% for linha in tableUser %}
+	        <tr>
+	            <td style="text-align: left;">{{ linha[0] }}</td>
+	            <td style="text-align: left;">{{ linha[1] }} A0A</td>
+	        </tr>
+	        {% endfor %}
+	        <tr>
+	            <td colspan="1" style="background: #efefef;color: #444;"><strong>TOTAL</strong></td>
+	            <td style="text-align: left;"><strong>{{ total_vendas }} A0A</strong></td>
+	        </tr>
+	    </table>
+	</section>
+	<br><br>
+	<section>
+	    <table style="width: 100%;">
+	        <tr>
+	            <th colspan="3" style="background: #333;color: #efefef;">RELATÓRIO DE FEICHO</th>
+	        </tr>
+	        <tr>
+	            <th style="width: 30%;">Descrição</th>
+	            <th style="width: 30%;">Percentual</th>
+	            <th style="width: 40%;">Total</th>
+	        </tr>
+	        {% for linha in table1 %}
+	        <tr>
+	            <td style="text-align: left;">{{ linha.pagamento }}</td>
+	            <td>{{ linha.percentagem }}%</td>
+	            <td style="text-align: left;">{{ linha.total }} A0A</td>
+	        </tr>
+	        {% endfor %}
+	        <tr>
+	            <td colspan="2" style="background: #efefef;color: #444;"><strong>TOTAL</strong></td>
+	            <td style="text-align: left;"><strong>{{ total_vendas }} A0A</strong></td>
+	        </tr>
+	    </table>
+	</section>
+	<br><br>
+	<section>
+		<table style="width: 100%;">
+		  <tr>
+		    <th colspan="3" style="background: #333;color: #efefef;">LISTA DAS CATEGPRIAS VENDIDOS</th>
+		   </tr>
+		   <tr>
+		    <th style="width:30%">Categoria</th>
+		    <th style="width:30%">Qtd</th>
+		    <th style="width:40%">Total</th>
+		   </tr>
+		   	{% for row in table2 %}
+			  <tr>
+			    <td style="text-align: left;">{{ row[0] }}</td>		    
+			    <td>{{ row[1] }}</td>		    
+			    <td style="text-align: left;">{{ row[2] }}</td>
+			  </tr>
+		  	{% endfor %}
+		</table>
+	</section>
+<br>
+	<section>
+		<table style="width: 100%;">
+		  <tr>
+		    <th colspan="6" style="background: #333;color: #efefef;">LISTA DOS PRODUTOS VENDIDOS</th>
+		   </tr>
+		   <tr>
+		    <th style="width:10%">Barcode</th>
+		    <th style="width:20%">Nome</th>
+		    <th style="width:30%">Categoria</th>
+		    <th style="width:30%">Preco</th>
+		    <th style="width:40%">Qtd</th>
+		    <th style="width:50%">Total</th>
+		   </tr>
+		   	{% for row in table3 %}
+			  <tr>
+			    <td style="text-align: left;">{{ row[0] }}</td>
+			    <td style="text-align: left;">{{ row[1] }}</td>
+			    <td style="text-align: left;">{{ row[2] }}</td>
+			    <td style="text-align: left;">{{ row[3] }}</td>
+			    <td style="text-align: left;">{{ row[4] }}</td>	
+			    <td style="text-align: left;">{{ row[5] }}</td>	
+			  </tr>
+		  	{% endfor %}
+		</table>
+	</section>
+
+
+</body>
+</html>

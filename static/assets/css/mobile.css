@@ -1,0 +1,556 @@
+
+/*===================== MEDIA QUERIES =====================*/
+
+/* lapTop */
+@media screen and (min-width: 999px) and (max-width: 1480px) {
+    .contain{
+        width: 100%;
+        padding-right:20px;
+        position: relative;
+        grid-template-columns:auto 18rem;
+        overflow-x: hidden;
+    }
+    .list_header{
+        grid-template-columns: .5fr 1.5fr 1.5fr 1.5fr;
+    }
+    .list_products.Vendas .card{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 1fr 4fr 4fr 3fr;
+    }
+    .n-media{
+        display: none;
+    }
+    .contain .move{
+        display: none;
+    }
+
+    aside .logo img{
+        margin-left: 1.8rem;
+    }
+
+    aside .logo h2{
+        display: none;
+    }
+
+
+    aside .sidebar a{
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+    .right{
+        margin-top: 4.6rem;
+    }
+    .right .title{
+        display: none;
+    }
+    .list_products{
+        grid-template-columns: 1fr 1fr 1fr ;
+    }
+}
+/* surface duo */
+@media screen and (min-width: 1082px) and (max-width: 1114px) {
+    .contain{
+        width: 100%;
+        position: relative;
+        display: grid;
+        grid-template-columns:auto 26rem;
+        overflow-x: hidden;
+    }
+    .list_header{
+        grid-template-columns: .5fr 1fr 1fr 1fr;
+    }
+    .list_products.Vendas .card{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: .5fr 1fr 1fr 1fr;
+    }
+    .n-media,
+    .n-mediaSur{
+        display: none;
+    }
+    .contain .move{
+        display: none;
+    }
+
+    aside .logo img{
+        margin-left: 2rem;
+    }
+
+    aside .logo h2{
+        display: none;
+    }
+
+   
+
+    aside .sidebar a{
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+
+    main .insights {
+        margin-top: 10px;
+        padding:0 15px;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    main .recent-orders{
+        width: 98%;
+        padding-left: 1rem;
+        position: absolute;
+        left: -119px;
+        margin: 1rem 0 0 8.8rem;
+    }
+
+    main .title{
+        display: none;
+    }
+
+    main .heading{
+        margin-left: 1rem;
+    }
+
+    .right .title{
+        display: none;
+    }
+    .list_products{
+        grid-template-columns: 1fr 1fr 1fr ;
+    }
+
+    .upload-file.vendidos{
+        width: 100%;
+    }
+    .container#formPreviewsVendas .textboxs{
+        width:100%;
+    }
+}
+/*Ipad,Tablet*/
+@media screen and (min-width: 706px) and (max-width: 998px) {
+    .contain{
+        width: 100%;
+        padding-right: 20px;
+        position: relative;
+        display: grid;
+        grid-template-columns:auto 23rem;
+        overflow-x: hidden;
+    }
+    .list_header{
+        grid-template-columns: .5fr 1fr 1fr 1fr;
+    }
+    .list_products.Vendas .card{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: .5fr 1fr 1fr 1fr;
+    }
+    .n-media,
+    .n-mediaSur{
+        display: none;
+    }
+    .contain .move{
+        display: none;
+    }
+
+    aside .logo img{
+        margin-left: 2rem;
+    }
+
+    aside .logo h2{
+        display: none;
+    }
+    aside .sidebar a{
+        width: 5.6rem;
+    }
+
+    aside .sidebar a:last-child {
+        position: relative;
+        margin-top: 1.8rem;
+    }
+
+
+    main .insights {
+        margin-top: 10px;
+        padding:0 15px;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    main .recent-orders{
+        width: 95%;
+        position: absolute;
+        left: 1px;
+        transform: translateX(-105px);
+        margin: 1rem 0 0 8.8rem;
+    }
+
+    main .title{
+        display: none;
+    }
+
+    main .heading{
+        margin-left: 1rem;
+    }
+
+    .right .title{
+        display: none;
+    }
+    .form-add{
+        padding-top: .9rem;
+        display: flex;
+        flex-direction: column;
+    }
+    .drop-zone {
+        max-width: 100%;
+        min-height: 300px;
+    }
+    .list_products{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .upload-file.vendidos{
+        width: 100%;
+    }
+    .container#formPreviewsVendas .textboxs{
+        width:100%;
+        margin:0px;
+        padding:0px;
+        max-width:100%;
+    }
+    .container#formPreviewsVendas .textboxs .card-list{
+        margin-right:0;
+    }
+    .container#formPreviewsVendas .textboxs .card-list div span:last-child{
+        font-size: 15px;
+    }
+}
+/* univers */
+@media screen and (min-width: 706px) and (max-width: 1480px) {
+
+    aside .sidebar .list .titleSidbar{
+        width: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: -5.7rem;
+        padding: 5px;
+        border-radius: 6px;
+        background: var(--color-dark);
+        color: #fff;
+        font-weight: 650;
+        z-index: 2;
+        transition: 0.5s;
+        opacity: 0;
+    }
+    aside .sidebar .list.active .titleSidbar{
+        right: -7.7rem;
+    }
+    aside .sidebar .list:hover .titleSidbar{
+        opacity: 1;
+    }
+    aside .sidebar .list .titleSidbar::before{
+        content: "";
+        position: absolute;
+        left: 4px;
+        width: 10px;
+        height: 10px;
+        
+        background: var(--color-dark);
+        transform: rotate(45deg);
+        z-index: -1;
+        transition: 0.7s;
+    }
+    aside .sidebar .list:hover .titleSidbar::before{
+        left: -4px;
+    }
+}
+/* mobile */
+@media screen and (max-width: 706px) {
+    .contain {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        overflow: hidden;        
+    }
+    .list_header{
+        grid-template-columns: .5fr 1fr 1fr 1fr;
+    }
+    .list_products.Vendas .card{
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: .5fr 1fr 1fr 1fr;
+    }
+    .list_products.Vendas .card h1{
+        font-size: 8pt;
+    }
+    .n-media,
+    .n-mediaSur{
+        display: none;
+    }
+    .contain main .move,
+    .contain .right .move{
+        top: 5.3rem;
+        right: 1rem;
+        width: 35px;
+        height: 25px;
+        position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-dark);
+        border-radius: var(--border-radius-1);
+        background: var(--color-info-light);
+        text-decoration: none;
+        display: none;
+    }
+    .contain .right .move span{
+        margin-left: 6px;
+    }
+    .move span{
+        margin-top: 3px;
+        font-weight: 666;
+        font-size: 15pt;
+        color: var(--color-dark);
+    }
+    .contain main .move.active,
+    .contain .right .move.active{
+        display: flex;
+    }
+    #main,
+    #right {
+        flex: none;
+        width: 100%;
+        height: 100vh;
+        padding-top: 5rem;
+        scroll-snap-align: start;
+        overflow-y: auto;
+    }
+
+    aside{
+        top: 0;
+        left: 0;
+        padding-right: var(--card-padding);
+        position: absolute;
+        display: none;
+        width: 18rem;
+        height: 100vh;
+        background: var(--color-white);
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        z-index: 100;
+    }
+
+    aside.active{
+        display: block;
+    }
+
+    aside .logo{
+        margin-left: 1.7rem;
+    }
+    aside .logo h2 {
+        display: inline;
+    }
+
+    aside .sidebar h3{
+        display: inline;
+    }
+
+    aside .sidebar a{
+        width: 100%;
+        height: 3.4rem;
+    }
+
+    aside .sidebar a:last-child{
+        position: absolute;
+        bottom: .5rem;
+    }
+
+    aside .close{
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    main{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+    main .heading{
+        padding-bottom: 4px;
+        margin-bottom: .5rem;
+        text-align: left;
+        font-weight: 500;
+        font-family: sans-serif;
+        border-bottom: 1px solid var(--color-info-dark);
+
+    }
+    main h1{
+        text-align: center;
+    }
+    main .insights{
+        display: flex;
+        flex-direction: column;
+    }
+
+    main .insights > div{
+        margin-top: 5px;
+        border-radius: var(--border-radius-2);
+    }
+
+    main .recent-orders{
+        width: 100%;
+        padding: 0;
+        padding-bottom: 2rem;
+        margin: 1.5rem 0 0 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        text-align: center;
+        transform: translateX(0px);
+        
+    }
+    main .recent-orders .graph .texto .btns button{
+        display: none;
+    }
+    
+   
+
+    #right{
+        position: static;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        padding-top: 4rem;
+    }
+    
+    .right .recent-updates .title{
+        padding-bottom: 4px;
+        margin-bottom: .5rem;
+        text-align: left;
+        font-weight: 500;
+        font-family: sans-serif;
+        border-bottom: 1px solid var(--color-info-dark);
+    }
+    .right .sales-analytics{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .right .sales-analytics .item{
+        background: var(--color-white);
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.7rem;
+        padding: 1rem 1rem;
+        padding-right: 15px;
+        border-radius: var(--border-radius-2);
+        box-shadow: var(--box-shadow);
+        transition: all 300ms ease;
+        cursor: pointer;
+    }
+
+    .right .sales-analytics .item .right{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+    .right .sales-analytics .item .right .info h3{
+        font-size: 12px;
+    }
+    .right .sales-analytics .item .right .tna{
+        font-size: 10pt;
+        font-weight: 666;
+    }
+    
+    .right .sales-analytics .add-product{
+        padding:1.5rem 0;
+        background: transparent;
+    }
+
+    .right .sales-analytics .add-product div{
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+    .right .sales-analytics .add-product div h3{
+        font-weight: 600;
+    }
+
+    .modal-footer{
+        display: flex;
+    }
+    .modal-footer button{
+        width: 100%;
+    }
+    .modal-footer button:last-child{
+        padding: .7rem;
+        font-weight: 666;
+        color: var(--color-info-light);
+        margin-bottom: 2rem;
+    }
+    .list_products{
+        grid-template-columns: 1fr;
+    }
+    .list_products .card:hover{
+        transform: scale(1);
+        background-color: #e0e0e0d5;
+        border-radius: 30px;
+        cursor: pointer;
+    }
+    
+    .upload-file.vendidos{
+        width: 100%;
+    }
+    .container#formPreviewsVendas .textboxs{
+        width:100%;
+        max-width:100%;
+        padding:0;
+        display:flex;
+        flex-direction:column-reverse;
+    }
+    .container#formPreviewsVendas .textboxs .card-floating{
+        padding:5px 0px;
+        padding-left:0px;
+        width:100%;
+        max-width:100%;
+    }
+    .container#formPreviewsVendas .textboxs .card-floating div{
+        width:100%;
+        margin: 5px 0px;
+        max-width:100%;
+    }
+
+    .container#formPreviewsVendas .textboxs .card-list{
+        margin-left: 0px;
+        margin-right: 0px;
+        min-height:250px;
+    }
+    .container#formPreviewsVendas .textboxs .card-list .list_card_list{
+        height:100%;
+    }
+    
+}
+
+
+.list_products.Vendas .card:hover{
+    transform:scale(1.0);
+}

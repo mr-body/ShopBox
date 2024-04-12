@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Concluir venda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.carrinho.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/boxicons/css/boxicons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.concluirvendas.css') }}">
+    <style>
+        body {
+            background: white;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .buttons .cv {
+            width: 83%;
+            background: #da3019;
+        }
+
+        a.cv:hover {
+            transform: scale(1.02);
+        }
+
+        .ticker {
+            padding: 20px;
+            background-color: green;
+            border: none;
+            color: white;
+            font-size: 20pt;
+            cursor: pointer;
+            transition: 0.5s;
+            border-radius: 2;
+        }
+
+        .ticker:active {
+            transform: scale(4);
+        }
+
+        .desative {
+            background-color: red
+        }
+
+        .desative:active {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>Mata Sede</h1>
+        </div>
+        <div class="header-left">
+            <button class="concluirVenda cv" style="border-radius: 6px;width: 100%;height: 40px;background: #da3019;">
+                <a href="carrinho" style="color:white">Carrinho</a>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="dados">
+            <form method="post" action="#">
+                <div class="formulario">
+                    <div
+                        style="width: 50%;height: 200px;display: flex;align-items: flex-start;justify-content: flex-start;flex-direction: column;line-height: 50px;">
+                        <h1>TOTAL: <span id="total" style="color:green">{{total}}<span></span></span></h1>
+                        <input type="number" id="total" name="total" hidden="" value="<?= $total ?>" required="">
+
+                        <h1>Troco: <span id="troco" style="color:greenyellow;">0</span></h1>
+                    </div>
+                    <div style="display: flex;flex-direction: column;justify-content: center;">
+                        <label for="pagamento">Pagamento:</label>
+                        <div class="campotexto">
+                            <i class="bx bxs-purchase-tag"></i>
+                            <input type="number" id="pagamento" onkeyup="checkEnter(event)" name="pagamento"
+                                oninput="troco(this.value)" required="">
+                        </div>
+                        <button class="concluirVenda cv" style="border-radius: 0px;width: 100%;height: 40px;">
+                            <a style="color:white" onclick="pagamento('PGM')">Pagemento em mao</a>
+                        </button>
+                        <button class="concluirVenda cv" style="border-radius: 0px;width: 100%;height: 40px;">
+                            <a style="color:white" onclick="pagamento('TPA')">Pagamento com TPA</a>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <center>
+                        <br><br><br><br>
+                        <img src="{{ url_for('static', filename='./assets/image/site/000 (2).png') }}"><br>
+                        <span class="ticker desative" onclick="toggle()">
+                            Imprimir ticker
+                        </span>
+                    </center>
+                </div>
+                
+            </form>
+            <div style="position: absolute;top:20%;width: 500px;display: none;">
+                <div>
+                    <div>
+                        <form method="post" action="{{ url_for('addCliente') }}" class="form digital">
+                            <div class="inputBx">
+                                <input type="text" name="username" required id="nome" autocomplete="off" placeholder="Nome do cliente">
+                            </div>
+                            <button type="submit">Concluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+
+    <script type="text/javascript">
+
+        let checked_value = false
+
+        function troco(e) {
+            $("#troco").text(
+                ` ${e - $("#total").text()}`
+            )
+        }
+
+        function pagamento(e) {
+            window.location.href = `/vendas/concluir/${e}/${$("#pagamento").val()}/${checked_value}`
+        }
+
+        $("#pagamento").focus()
+
+        function toggle() {
+            $(".ticker").toggleClass("desative")
+            $("#pagamento").focus()
+
+            if (checked_value) {
+                checked_value = false
+            }
+            else {
+                checked_value = true
+            }
+        }
+
+        function checkEnter(event) {
+            // Verificar se a tecla pressionada é a tecla "Enter" (código 13)
+            if (event.keyCode === 13) {
+
+                if($("#pagamento").val()=="")
+                {
+                    window.location.href = `/vendas/concluir/PGM/${ $("#total").text()}/${checked_value}`
+                }
+                else{
+                    window.location.href = `/vendas/concluir/PGM/${$("#pagamento").val()}/${checked_value}`
+                }
+            }
+        }
+
+
+        document.addEventListener("keydown", function(event) {
+            switch(event.key) {
+                case "Escape":
+                    window.history.back();  
+                break;
+                case "PageUp":
+                    toggle()
+                break;
+                case "Home":
+                    window.location.href="/vendas"
+                break;
+            }
+        });
+    </script>
+    <script src="{{ url_for('js_routes.teclado') }}"></script>
+</body>
+
+</html>

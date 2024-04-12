@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./assets/css/style.carrinho.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/boxicons/css/boxicons.css') }}">
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/Booststrap/bootstrap.min.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='./vendor/icons/css/uicons-regular-rounded.css') }}">
+
+    <script src="{{ url_for('js_routes.jquery') }}"></script>
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div class="header">
+        <div class="header-left">
+            <h1>Total: <span id="total">0.000.000,00 <i>kz</i></span></h1>
+        </div>
+        <div class="btns">
+            <a class="f" href="pagamento">
+                <button class="cv">Concluir venda</button>
+            </a>
+            <a class="l" href="/vendas">
+                <button class="cv feicho">Feichar Carrinho</button>
+            </a>
+        </div>
+    </div>
+    <div class="section">
+        <div class="mainList" style="width: 100%;">
+            <div class="topinfo">
+                <h2>Reembolso de vendas</h2>
+            </div>
+            <div class="prodotos">
+
+                <div class="k">
+                    <div style="width: 100%;text-align: center;height: 90vh;display: flex;flex-direction: column;align-items: center;justify-content: center;">
+                        <h1>Campo de Devoluçoes</h1><br><br>
+                        <p>Use este formulario quando um cliente, resolver devolver alguns produto ja cadastrado como venda anteriormente</p>
+                    </div>  
+                </div>
+
+            </div>
+        </div>
+        <div class="workarea">
+            <h4>Sistema de Vendas REENBOLSO</h4>
+            <div>
+           <form id="carrinhoForm" onsubmit="add_vendas(); return false">
+                <div class="meanwork">
+                    <div class="dados">
+                        <div id="result"></div>
+                        <label for="code">Referencia</label>
+                        <div class="campotexto">
+                            <i class="bx bxs-purchase-tag"></i>
+                            <input type="text" name="code" placeholder="Quantidade + Barcode" id="code" onkeypress="handleKeyPress(event)" required autocomplete="none">
+                        </div>
+                        <input type="submit" value="Add no carrinho" class="cv" style="background: rgb(4, 68, 41); border-radius: 0px;font-size: 12pt;text-transform: uppercase;width: 100%;">
+                        <input type="submit" value="Add Quantidade" class="cv" style="border-radius: 0px;font-size: 12pt;text-transform: uppercase;width: 100%;">
+                    </div>
+                    <div class="meainperfil">
+                        <img src="{{ url_for('static', filename='/assets/image/site/transferir.jpg') }}" alt="" id="imagemDePerfil">
+                    </div>
+                </div>
+            </form>
+            </div>
+            <div style="height: 100%;">
+                <div class="table">
+                    <table>
+                    <thead>
+                        <tr style="height: 35px;border-bottom: 1px solid #ccc;">
+                        <th>IMG</th>
+                        <th style="text-align:left">Produto</th>
+                        <th style="text-align:left">Preco unit</th>
+                        <th>Quant</th>
+                        <th style="text-align:left">Total</th>
+                        <th>Opção</th>
+                        </tr>
+                    </thead>
+                    <tbody class="listaAjax">
+                        {% for row in lista %}
+                          <tr>
+                            <td><img src="{{ url_for('static', filename='post/produtos/' + string(row[0]) + '.png') }}" id="perfilmin" alt=""></td>
+                            <td style="text-align:left">{{ row[1] }}</td>
+                            <td style="text-align:left">{{ row[2] }} kz</td>
+                            <td>{{ row[3] }}</td>
+                            <td style="text-align:left">{{ row[4] }} kz</td>
+                            <td><a id="delete" onclick="deleter('{{ row[0] }}','{{ row[3] }}')" title="remover do carrinho"><span class="fi-rr-trash" style="font-size: 15pt;"></span></a></td>
+                          </tr>
+                        {% endfor %}    
+                    </tbody>
+                    </table>
+
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        
+    </script>
+    <script src="{{ url_for('js_routes.revenda') }}"></script>
+</body>
+
+</html>

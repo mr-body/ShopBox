@@ -131,7 +131,7 @@
     }
 
     // Obtenha o host e a porta a partir da URL atual do site
-    var host = window.location.hostname;
+    var host = "animated-space-yodel-976j4prg6qrpf76g7-1913.app.github.dev";
     var port = window.location.port;
 
     // Se a porta não estiver definida, defina como 80 (para http) ou 443 (para https)
@@ -143,7 +143,7 @@
     function activeLink() {
         // body...
         var nameform = this.dataset.id
-        var urlForm = "http://" + host + ":" + port + "/" +nameform ;
+        var urlForm = "/" +nameform ;
         $('#searching').css('display', 'flex');
         
         list.forEach((item) => 
